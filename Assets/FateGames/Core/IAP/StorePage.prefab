@@ -1,0 +1,477 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &788358780569898083
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 788358780569898081}
+  - component: {fileID: 788358780569898082}
+  m_Layer: 0
+  m_Name: StorePage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &788358780569898081
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 788358780569898083}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &788358780569898082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 788358780569898083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42611c4d4cece3142a00edb0348aefc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dontDestroyOnLoad: 1
+  adjustTokenAND: 
+  adjustTokenIOS: 
+  purchaseSuccessfulEvents:
+  - id: com.voyager.mygentlemanclub.removeads
+    onSuccessful:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 11400000, guid: ad0af8ff39f49624dbff29ffb2db5ba9, type: 2}
+          m_TargetAssemblyTypeName: RewardManager, Assembly-CSharp
+          m_MethodName: RemoveAds
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - id: com.voyager.mygentlemanclub.vippack
+    onSuccessful:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 11400000, guid: ad0af8ff39f49624dbff29ffb2db5ba9, type: 2}
+          m_TargetAssemblyTypeName: RewardManager, Assembly-CSharp
+          m_MethodName: RemoveAds
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 11400000, guid: ad0af8ff39f49624dbff29ffb2db5ba9, type: 2}
+          m_TargetAssemblyTypeName: RewardManager, Assembly-CSharp
+          m_MethodName: AddGem
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 24
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - id: com.voyager.mygentlemanclub.premiumpack
+    onSuccessful:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 11400000, guid: ad0af8ff39f49624dbff29ffb2db5ba9, type: 2}
+          m_TargetAssemblyTypeName: RewardManager, Assembly-CSharp
+          m_MethodName: RemoveAds
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 11400000, guid: ad0af8ff39f49624dbff29ffb2db5ba9, type: 2}
+          m_TargetAssemblyTypeName: RewardManager, Assembly-CSharp
+          m_MethodName: AddGem
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 8
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - id: com.voyager.mygentlemanclub.gem16
+    onSuccessful:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 11400000, guid: ad0af8ff39f49624dbff29ffb2db5ba9, type: 2}
+          m_TargetAssemblyTypeName: RewardManager, Assembly-CSharp
+          m_MethodName: AddGem
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 16
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - id: com.voyager.mygentlemanclub.gem8
+    onSuccessful:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 11400000, guid: ad0af8ff39f49624dbff29ffb2db5ba9, type: 2}
+          m_TargetAssemblyTypeName: RewardManager, Assembly-CSharp
+          m_MethodName: AddGem
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 8
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - id: com.voyager.mygentlemanclub.gem4
+    onSuccessful:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 11400000, guid: ad0af8ff39f49624dbff29ffb2db5ba9, type: 2}
+          m_TargetAssemblyTypeName: RewardManager, Assembly-CSharp
+          m_MethodName: AddGem
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 4
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - id: com.voyager.mygentlemanclub.starterpack
+    onSuccessful:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 11400000, guid: ad0af8ff39f49624dbff29ffb2db5ba9, type: 2}
+          m_TargetAssemblyTypeName: RewardManager, Assembly-CSharp
+          m_MethodName: RemoveAds
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 11400000, guid: ad0af8ff39f49624dbff29ffb2db5ba9, type: 2}
+          m_TargetAssemblyTypeName: RewardManager, Assembly-CSharp
+          m_MethodName: AddMoney
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 2000
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 11400000, guid: ad0af8ff39f49624dbff29ffb2db5ba9, type: 2}
+          m_TargetAssemblyTypeName: RewardManager, Assembly-CSharp
+          m_MethodName: AddGem
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 10
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - id: com.voyager.mygentlemanclub.premiumpack1
+    onSuccessful:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 11400000, guid: ad0af8ff39f49624dbff29ffb2db5ba9, type: 2}
+          m_TargetAssemblyTypeName: RewardManager, Assembly-CSharp
+          m_MethodName: AddMoney
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 1500
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 11400000, guid: ad0af8ff39f49624dbff29ffb2db5ba9, type: 2}
+          m_TargetAssemblyTypeName: RewardManager, Assembly-CSharp
+          m_MethodName: AddGem
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 15
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - id: com.voyager.mygentlemanclub.vippack1
+    onSuccessful:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 11400000, guid: ad0af8ff39f49624dbff29ffb2db5ba9, type: 2}
+          m_TargetAssemblyTypeName: RewardManager, Assembly-CSharp
+          m_MethodName: RemoveAds
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 11400000, guid: ad0af8ff39f49624dbff29ffb2db5ba9, type: 2}
+          m_TargetAssemblyTypeName: RewardManager, Assembly-CSharp
+          m_MethodName: AddMoney
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 5000
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 11400000, guid: ad0af8ff39f49624dbff29ffb2db5ba9, type: 2}
+          m_TargetAssemblyTypeName: RewardManager, Assembly-CSharp
+          m_MethodName: AddGem
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 20
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - id: com.voyager.mygentlemanclub.noadshoverboardpack
+    onSuccessful:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 11400000, guid: ad0af8ff39f49624dbff29ffb2db5ba9, type: 2}
+          m_TargetAssemblyTypeName: RewardManager, Assembly-CSharp
+          m_MethodName: RemoveAds
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 11400000, guid: ad0af8ff39f49624dbff29ffb2db5ba9, type: 2}
+          m_TargetAssemblyTypeName: RewardManager, Assembly-CSharp
+          m_MethodName: GetPermanentHoverboard
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - id: com.voyager.mygentlemanclub.money1000
+    onSuccessful:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 11400000, guid: ad0af8ff39f49624dbff29ffb2db5ba9, type: 2}
+          m_TargetAssemblyTypeName: RewardManager, Assembly-CSharp
+          m_MethodName: AddMoney
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 1000
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - id: com.voyager.mygentlemanclub.money2500
+    onSuccessful:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 11400000, guid: ad0af8ff39f49624dbff29ffb2db5ba9, type: 2}
+          m_TargetAssemblyTypeName: RewardManager, Assembly-CSharp
+          m_MethodName: AddMoney
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 2500
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - id: com.voyager.mygentlemanclub.money7500
+    onSuccessful:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 11400000, guid: ad0af8ff39f49624dbff29ffb2db5ba9, type: 2}
+          m_TargetAssemblyTypeName: RewardManager, Assembly-CSharp
+          m_MethodName: AddMoney
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 7500
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - id: com.voyager.mygentlemanclub.money15000
+    onSuccessful:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 11400000, guid: ad0af8ff39f49624dbff29ffb2db5ba9, type: 2}
+          m_TargetAssemblyTypeName: RewardManager, Assembly-CSharp
+          m_MethodName: AddMoney
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 15000
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - id: com.voyager.mygentlemanclub.money50000
+    onSuccessful:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 11400000, guid: ad0af8ff39f49624dbff29ffb2db5ba9, type: 2}
+          m_TargetAssemblyTypeName: RewardManager, Assembly-CSharp
+          m_MethodName: AddMoney
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 50000
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - id: com.voyager.mygentlemanclub.nomoreadspack
+    onSuccessful:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 11400000, guid: ad0af8ff39f49624dbff29ffb2db5ba9, type: 2}
+          m_TargetAssemblyTypeName: RewardManager, Assembly-CSharp
+          m_MethodName: AddGem
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 9999
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 11400000, guid: ad0af8ff39f49624dbff29ffb2db5ba9, type: 2}
+          m_TargetAssemblyTypeName: RewardManager, Assembly-CSharp
+          m_MethodName: RemoveAds
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - id: com.voyager.mygentlemanclub.skipit10
+    onSuccessful:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 11400000, guid: ad0af8ff39f49624dbff29ffb2db5ba9, type: 2}
+          m_TargetAssemblyTypeName: RewardManager, Assembly-CSharp
+          m_MethodName: AddGem
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 10
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - id: com.voyager.mygentlemanclub.skipit25
+    onSuccessful:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 11400000, guid: ad0af8ff39f49624dbff29ffb2db5ba9, type: 2}
+          m_TargetAssemblyTypeName: RewardManager, Assembly-CSharp
+          m_MethodName: AddGem
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 25
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - id: com.voyager.mygentlemanclub.skipit75
+    onSuccessful:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 11400000, guid: ad0af8ff39f49624dbff29ffb2db5ba9, type: 2}
+          m_TargetAssemblyTypeName: RewardManager, Assembly-CSharp
+          m_MethodName: AddGem
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 75
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  onPurchaseSuccessful:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: b8f7c0a9ede6cb848a30de01377d3c3e, type: 2}
+        m_TargetAssemblyTypeName: FateGames.Core.GameEvent, Assembly-CSharp
+        m_MethodName: Raise
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

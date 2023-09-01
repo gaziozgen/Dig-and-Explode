@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1157414411331355610
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4846843889602904216}
+  - component: {fileID: 7194684560470095707}
+  m_Layer: 0
+  m_Name: AdManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4846843889602904216
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1157414411331355610}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7194684560470095707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1157414411331355610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e339c0c60d09044ca0b7905762afd44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dontDestroyOnLoad: 1
+  onInterstitialDismissed:
+    m_PersistentCalls:
+      m_Calls: []
+  BannerAdUnitIdAnd: 76c9011ced4d64d6
+  InterstitialAdUnitIdAnd: 9c38eb8f88f6ed71
+  RewardedAdUnitIdAnd: 2490be4e9d1d7e09
+  BannerAdUnitIdIOS: 87dad85ce022cb39
+  InterstitialAdUnitIdIOS: 94e78e440a380f97
+  RewardedAdUnitIdIOS: 1a49b0ced6375beb
+  remoteConfigManager: {fileID: 11400000, guid: c382e6d1da5fc504ca8e7260662acbb1,
+    type: 2}
+  timeIntervalBetweenInterstitialConfig: {fileID: 11400000, guid: 172b342a7f0714945834e979759fb1cc,
+    type: 2}
+  firstInterstitialTimeConfig: {fileID: 11400000, guid: a46708a4fd21f3b42b0f076a58fbef9f,
+    type: 2}
+  graceTimeConfig: {fileID: 11400000, guid: 019998da612111e48b036780cb8c8a48, type: 2}
