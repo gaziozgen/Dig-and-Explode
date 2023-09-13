@@ -25,12 +25,29 @@ public class Follower : FateMonoBehaviour
     {
         if (!target) return;
         Vector3 position = target.position + offset;
-        if (freezeX || Mathf.Abs(position.x - transform.position.x) <= threshold.x)
+        Vector3 difference = position - transform.position;
+        // XXXXXXXXXXXXXXXXXXXXXXXXXXXX
+        if (freezeX || Mathf.Abs(difference.x) <= threshold.x)
             position.x = transform.position.x;
-        if (freezeY || Mathf.Abs(position.y - transform.position.y) <= threshold.y)
+        else if (difference.x > threshold.x)
+            position.x -= threshold.x;
+        else
+            position.x += threshold.x;
+        // YYYYYYYYYYYYYYYYYYYYYYYYYYYYYY
+        if (freezeY || Mathf.Abs(difference.y) <= threshold.y)
             position.y = transform.position.y;
-        if (freezeZ || Mathf.Abs(position.z - transform.position.z) <= threshold.z)
+        else if (difference.y > threshold.y)
+            position.y -= threshold.y;
+        else
+            position.y += threshold.y;
+        // ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ
+        if (freezeZ || Mathf.Abs(difference.z) <= threshold.z)
             position.z = transform.position.z;
+        else if (difference.z > threshold.z)
+            position.z -= threshold.z;
+        else
+            position.z += threshold.z;
+
         transform.position = position;
     }
 }
