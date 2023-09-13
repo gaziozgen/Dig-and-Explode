@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedAppIndex: 0
   clientTokens:
-  - 
+  - 552be77b22a81bdc07d9e28c7861bb31
   appIds:
-  - 0
+  - 1757168148063699
   appLabels:
-  - App Name
+  - Dig and Explode
   cookie: 1
   logging: 1
   status: 1

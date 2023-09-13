@@ -11,6 +11,24 @@ public class SwerveIndicator : FateMonoBehaviour
     [SerializeField] Swerve swerve;
     [SerializeField] UIElement uiElement;
 
+    private void Awake()
+    {
+        swerve.OnStart.AddListener((swerve) =>
+        {
+            uiElement.Show();
+            SetOutCirclePosition(swerve);
+        });
+        swerve.OnSwerve.AddListener((swerve) =>
+        {
+            SetInCirclePosition(swerve);
+            SetOutCirclePosition(swerve);
+        });
+        swerve.OnRelease.AddListener((swerve) =>
+        {
+            uiElement.Hide();
+        });
+    }
+
     private void Start()
     {
         Debug.Log(Screen.height);
@@ -19,6 +37,8 @@ public class SwerveIndicator : FateMonoBehaviour
         inCircle.sizeDelta = new Vector2(swerve.Size, swerve.Size);
         uiElement.Hide();
     }
+
+
 
     public void SetOutCirclePosition(Swerve swerve)
     {

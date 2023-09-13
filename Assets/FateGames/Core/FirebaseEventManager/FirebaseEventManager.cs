@@ -7,14 +7,15 @@ using UnityEngine;
 public class FirebaseEventManager : ScriptableObject
 {
     private readonly static string levelProgressEventName = "LevelProgress";
+    static int level = 1;
     public static void SendEvent(string eventName)
     {
         if (eventName == null || eventName == "") return;
         FirebaseAnalytics.LogEvent(eventName);
     }
-    public static void SendEvent(string eventName, params Parameter[] parameters)
+    public static void SendLevelCompleteEvent()
     {
-        FirebaseAnalytics.LogEvent(eventName, parameters);
+        FirebaseAnalytics.LogEvent("LevelProgress", "levelCompleted", $"LEVEL_{level}");
     }
 
     public static void SendLevelStartEvent(int level)

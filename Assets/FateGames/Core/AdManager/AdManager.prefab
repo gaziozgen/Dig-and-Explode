@@ -24,13 +24,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1157414411331355610}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7194684560470095707
 MonoBehaviour:
@@ -48,12 +48,12 @@ MonoBehaviour:
   onInterstitialDismissed:
     m_PersistentCalls:
       m_Calls: []
-  BannerAdUnitIdAnd: 76c9011ced4d64d6
-  InterstitialAdUnitIdAnd: 9c38eb8f88f6ed71
-  RewardedAdUnitIdAnd: 2490be4e9d1d7e09
-  BannerAdUnitIdIOS: 87dad85ce022cb39
-  InterstitialAdUnitIdIOS: 94e78e440a380f97
-  RewardedAdUnitIdIOS: 1a49b0ced6375beb
+  BannerAdUnitIdAnd: ea63ae74bac541b1
+  InterstitialAdUnitIdAnd: 1f17dca466b608e6
+  RewardedAdUnitIdAnd: c2cf92d4125bf512
+  BannerAdUnitIdIOS: 
+  InterstitialAdUnitIdIOS: 
+  RewardedAdUnitIdIOS: 
   remoteConfigManager: {fileID: 11400000, guid: c382e6d1da5fc504ca8e7260662acbb1,
     type: 2}
   timeIntervalBetweenInterstitialConfig: {fileID: 11400000, guid: 172b342a7f0714945834e979759fb1cc,

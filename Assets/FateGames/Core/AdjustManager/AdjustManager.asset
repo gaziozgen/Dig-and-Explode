@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83750c8765d2bee4d94194c614873ef3, type: 3}
   m_Name: AdjustManager
   m_EditorClassIdentifier: 
-  appTokenAND: 
+  appTokenAND: h6at4lwzfkzk
   appTokenIOS: 
   appOpenTokenAND: 
   appOpenTokenIOS: 

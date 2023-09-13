@@ -10,6 +10,8 @@ namespace FateGames.Core
 {
     public class Swerve : MonoBehaviour
     {
+        [SerializeField] bool fixedUpdate = false;
+        bool onMouseButton = false;
         public int Size { get; private set; } = Screen.height / 20;
         public Vector2 AnchorPosition { get; protected set; } = Vector2.zero;
         public Vector2 MousePosition { get; protected set; } = Vector2.zero;
@@ -35,6 +37,7 @@ namespace FateGames.Core
         }
         private void Update()
         {
+            if (fixedUpdate) return;
             if (Input.touchSupported)
             {
                 if (Input.touchCount > 0)
@@ -68,6 +71,13 @@ namespace FateGames.Core
                 else if (Input.GetMouseButton(0)) OnMouseButton();
                 else if (Input.GetMouseButtonUp(0)) OnMouseButtonUp();
             }
+        }
+
+        private void FixedUpdate()
+        {
+            if (!fixedUpdate) return;
+            if (onMouseButton)
+                OnMouseButton();
         }
 
         protected virtual void OnMouseButtonDown()

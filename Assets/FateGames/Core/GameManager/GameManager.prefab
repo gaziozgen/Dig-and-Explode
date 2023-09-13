@@ -25,6 +25,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8681148343581878937}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,7 +33,6 @@ Transform:
   m_Children:
   - {fileID: 1976193017974268845}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &-1081917552667334646
 MonoBehaviour:
@@ -67,7 +67,7 @@ MonoBehaviour:
   workingWorkerSet: {fileID: 11400000, guid: 483d9c9c8a9c3b744b36428ba1e45c77, type: 2}
   availableWorkerSet: {fileID: 11400000, guid: a9c28c66a5fe9f440a205ec292a2ee6b, type: 2}
   vibrationOn: {fileID: 11400000, guid: 7d63e4f11e0e45541ba946f741801d72, type: 2}
-  firebaseManager: {fileID: 0}
+  firebaseManager: {fileID: 11400000, guid: 5c3ff04a8efd8d448adab8efe3cc15fc, type: 2}
   remoteConfigManager: {fileID: 11400000, guid: c382e6d1da5fc504ca8e7260662acbb1,
     type: 2}
   applovinManager: {fileID: 11400000, guid: 7aebd4714571bf1498fa196f0a2901b7, type: 2}
@@ -179,6 +179,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 2196546718344236182}
     m_Modifications:
     - target: {fileID: 1157414411331355610, guid: 24ec27c9a9d86f045b2bf54653100680,
@@ -242,6 +243,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 24ec27c9a9d86f045b2bf54653100680, type: 3}
 --- !u!4 &1976193017974268845 stripped
 Transform:
