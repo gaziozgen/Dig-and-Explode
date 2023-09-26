@@ -3,70 +3,81 @@ using System.Collections.Generic;
 using UnityEngine;
 using FateGames.Core;
 
-public class Digger : FateMonoBehaviour
+public class Digger : FateMonoBehaviour, ISwerveMoveable
 {
+    [SerializeField] LayerMask diggableLayerMask;
     [SerializeField] Rigidbody rigidbody;
     [SerializeField] float rotationAcceleration = 10;
     [SerializeField] float maxRotationSpeed = 10;
+    [SerializeField] int maxCollider = 40;
     [SerializeField] Transform centerTransform;
-    [SerializeField] Swerve swerve;
     [Header("Borders")]
     [SerializeField] float right;
     [SerializeField] float left;
     [SerializeField] float top;
     [SerializeField] float bottom;
-    public bool isOnSwerve = false;
+    float rotationVelocity = 0;
 
-    public void EnableSwerve()
+    
+
+    private void Update()
     {
-        isOnSwerve = true;
+        Rotate();
     }
 
-    public void DisableSwerve()
-    {
-        isOnSwerve = false;
-    }
-
+    int count = 0;
     private void FixedUpdate()
     {
-
-        if (isOnSwerve)
-        {
-            Rotate();
-            Move();
-        }
-        else
-        {
-            BrakeRotation();
-        }
         rigidbody.velocity = Vector3.zero;
-        rigidbody.angularVelocity = Mathf.Clamp(rigidbody.angularVelocity.magnitude, 0, maxRotationSpeed) * new Vector3(Mathf.Abs(rigidbody.angularVelocity.normalized.x), Mathf.Abs(rigidbody.angularVelocity.normalized.y), Mathf.Abs(rigidbody.angularVelocity.normalized.z));
+        count = 0;
+        Collider[] colliders = Physics.OverlapSphere(centerTransform.position, 2, diggableLayerMask);
+        for (int i = 0; i < colliders.Length; i++)
+        {
+            Ore ore = colliders[i].GetComponent<Ore>();
+            if (ore && ore.IsDug)
+            {
+                Vector3 difference = centerTransform.position - ore.transform.position;
+                float distance = difference.magnitude;
+                //ore.Rigidbody.AddForce(difference.normalized * rotationVelocity / difference.sqrMagnitude / 10f, ForceMode.Force);
+                if (distance <= 0.2f)
+                    count++;
+            }
+        }
+        Debug.Log(count);
+
+    }
+
+    void AccelerateRotation()
+    {
+        rotationVelocity = Mathf.Clamp(rotationVelocity + Time.fixedDeltaTime * 10, 0, maxRotationSpeed);
     }
 
     void Rotate()
     {
-        //centerTransform.Rotate(new Vector3(0, 0, rotationSpeed) * Time.deltaTime);
-        rigidbody.AddTorque(Vector3.forward * rotationAcceleration, ForceMode.Acceleration);
+        float rotationVelocity = this.rotationVelocity * (1 - Mathf.Clamp(count / (float)maxCollider, 0, 1) * 0.8f);
+        centerTransform.rotation = Quaternion.Euler(centerTransform.rotation.eulerAngles + rotationAcceleration * Time.deltaTime * rotationVelocity * Vector3.back);
+
     }
 
     void BrakeRotation()
     {
-        Vector3 angularVelocity = rigidbody.angularVelocity;
-        angularVelocity = new Vector3(
-            Mathf.Clamp(angularVelocity.x - Time.deltaTime * 10, 0, float.MaxValue),
-            Mathf.Clamp(angularVelocity.y - Time.deltaTime * 10, 0, float.MaxValue),
-            Mathf.Clamp(angularVelocity.z - Time.deltaTime * 10, 0, float.MaxValue));
-        rigidbody.angularVelocity = angularVelocity;
+        rotationVelocity = Mathf.Clamp(rotationVelocity - Time.deltaTime * 10, 0, maxRotationSpeed);
 
     }
 
-    void Move()
+    public void Move(Swerve swerve)
     {
-        rigidbody.MovePosition(rigidbody.position + Time.deltaTime * 0.05f * swerve.Rate * rigidbody.angularVelocity.magnitude * (Vector3)swerve.Direction);
-        Vector3 pos = rigidbody.position;
+        AccelerateRotation();
+        float speed = Time.deltaTime * 0.5f * swerve.Rate;
+        speed *= 1 - Mathf.Clamp(count / (float)maxCollider, 0, 1) * 0.8f;
+        Vector3 pos = Vector3.MoveTowards(centerTransform.position, centerTransform.position + (Vector3)swerve.Direction, speed);
         pos.x = Mathf.Clamp(pos.x, -left, right);
         pos.y = Mathf.Clamp(pos.y, -bottom, top);
-        rigidbody.position = pos;
-        //transform.position = Vector3.MoveTowards(transform.position, transform.position + (Vector3)swerve.Direction, Time.deltaTime * 0.2f);
+        centerTransform.position = pos;
+    }
+
+    public void OnStable()
+    {
+        BrakeRotation();
     }
 }

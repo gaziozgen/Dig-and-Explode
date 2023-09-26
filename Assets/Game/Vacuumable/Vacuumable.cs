@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IDiggable
+public interface IVacuumable
 {
-    public void GetDug();
+    public void GetVacuumed(Vacuum vacuum);
 }
