@@ -111,7 +111,7 @@ public class StorePage : Singleton<StorePage>, IDetailedStoreListener
 #if !UNITY_EDITOR && !DEBUG && (UNITY_ANDROID || UNITY_IOS || UNITY_STANDALONE_OSX)
         // Prepare the validator with the secrets we prepared in the Editor
         // obfuscation window.
-        var validator = new CrossPlatformValidator(GooglePlayTangle.Data(),
+        /*var validator = new CrossPlatformValidator(GooglePlayTangle.Data(),
             AppleTangle.Data(), Application.identifier);
 
         try
@@ -132,7 +132,7 @@ public class StorePage : Singleton<StorePage>, IDetailedStoreListener
         {
             Debug.Log("Invalid receipt, not unlocking content");
             validPurchase = false;
-        }
+        }*/
 #endif
 
         if (validPurchase)

@@ -1,83 +1,113 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
-using FateGames.Core;
 
-public class Digger : FateMonoBehaviour, ISwerveMoveable
+public class Digger : Tool
 {
-    [SerializeField] LayerMask diggableLayerMask;
-    [SerializeField] Rigidbody rigidbody;
-    [SerializeField] float rotationAcceleration = 10;
-    [SerializeField] float maxRotationSpeed = 10;
-    [SerializeField] int maxCollider = 40;
-    [SerializeField] Transform centerTransform;
-    [Header("Borders")]
-    [SerializeField] float right;
-    [SerializeField] float left;
-    [SerializeField] float top;
-    [SerializeField] float bottom;
+    [SerializeField] List<DiggerLevel> levels;
+    public EffectPool EffectPool;
+    [SerializeField] int level = 0;
+    [SerializeField] float basePower = 1;
+    [SerializeField] float powerIncreasePerLevel = 1;
+    [SerializeField] float slowdownDereasePerLevel = 0.1f;
+    [SerializeField] float rotationAccelerationDuration = 2;
+    [SerializeField] float baseMaxRotationSpeed = 10;
+    [SerializeField] float maxRotationSpeedIncreasePerLevel = 50;
+    [SerializeField] ToolController toolController;
+
+    public bool Working { get; private set; }
+
     float rotationVelocity = 0;
 
-    
+    private float MaxSpeed => baseMaxRotationSpeed + level * maxRotationSpeedIncreasePerLevel;
 
-    private void Update()
+    private void Start()
     {
-        Rotate();
+        SetLevel(level);
     }
 
-    int count = 0;
-    private void FixedUpdate()
+    public override float SlowdownMultiplier()
     {
-        rigidbody.velocity = Vector3.zero;
-        count = 0;
-        Collider[] colliders = Physics.OverlapSphere(centerTransform.position, 2, diggableLayerMask);
-        for (int i = 0; i < colliders.Length; i++)
-        {
-            Ore ore = colliders[i].GetComponent<Ore>();
-            if (ore && ore.IsDug)
-            {
-                Vector3 difference = centerTransform.position - ore.transform.position;
-                float distance = difference.magnitude;
-                //ore.Rigidbody.AddForce(difference.normalized * rotationVelocity / difference.sqrMagnitude / 10f, ForceMode.Force);
-                if (distance <= 0.2f)
-                    count++;
-            }
-        }
-        Debug.Log(count);
+        return Mathf.Pow(1 - slowdownDereasePerLevel, level);
+    }
 
+    public void levelUp()
+    {
+        if (level == levels.Count) return;
+        print("LEVEL UP");
+        levels[level].Apply();
+        level++;
+    }
+
+    public void SetLevel(int level)
+    {
+        this.level = level;
+        for (int i = 0; i < level; i++)
+            levels[i].Apply();
+    }
+
+    public float Power() { return basePower + level * powerIncreasePerLevel; }
+
+    public void Recoil(Vector3 direction)
+    {
+        toolController.GetRigidbody().AddForce(direction * toolController.GetRigidbody().mass * 2, ForceMode.Impulse);
     }
 
     void AccelerateRotation()
     {
-        rotationVelocity = Mathf.Clamp(rotationVelocity + Time.fixedDeltaTime * 10, 0, maxRotationSpeed);
-    }
-
-    void Rotate()
-    {
-        float rotationVelocity = this.rotationVelocity * (1 - Mathf.Clamp(count / (float)maxCollider, 0, 1) * 0.8f);
-        centerTransform.rotation = Quaternion.Euler(centerTransform.rotation.eulerAngles + rotationAcceleration * Time.deltaTime * rotationVelocity * Vector3.back);
-
+        rotationVelocity = Mathf.Clamp(rotationVelocity + Time.deltaTime * MaxSpeed / rotationAccelerationDuration, 0, MaxSpeed);
     }
 
     void BrakeRotation()
     {
-        rotationVelocity = Mathf.Clamp(rotationVelocity - Time.deltaTime * 10, 0, maxRotationSpeed);
-
+        rotationVelocity = Mathf.Clamp(rotationVelocity - Time.deltaTime * MaxSpeed / rotationAccelerationDuration, 0, MaxSpeed);
     }
 
-    public void Move(Swerve swerve)
+    void Rotate()
     {
+        float finalRotationVelocity = rotationVelocity * toolController.SpeedMultiplier;
+        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + Time.deltaTime * finalRotationVelocity * Vector3.back);
+    }
+
+    public override void OnWork()
+    {
+        if (!Working) Working = true;
         AccelerateRotation();
-        float speed = Time.deltaTime * 0.5f * swerve.Rate;
-        speed *= 1 - Mathf.Clamp(count / (float)maxCollider, 0, 1) * 0.8f;
-        Vector3 pos = Vector3.MoveTowards(centerTransform.position, centerTransform.position + (Vector3)swerve.Direction, speed);
-        pos.x = Mathf.Clamp(pos.x, -left, right);
-        pos.y = Mathf.Clamp(pos.y, -bottom, top);
-        centerTransform.position = pos;
+        Rotate();
     }
 
-    public void OnStable()
+    public override void OnNotWork()
     {
+        if (Working) Working = false;
         BrakeRotation();
+        Rotate();
+    }
+
+    public override void OnSelect()
+    {
+        Activate();
+        rotationVelocity = 0;
+    }
+
+    public override void OnDeselect()
+    {
+        Deactivate();
+    }
+}
+
+[Serializable]
+public class DiggerLevel
+{
+    public List<GameObject> deactivateList;
+    public List<GameObject> activateList;
+
+    public void Apply()
+    {
+        for (int i = 0; i < deactivateList.Count; i++)
+            deactivateList[i].SetActive(false);
+        for (int i = 0; i < activateList.Count; i++)
+            activateList[i].SetActive(true);
     }
 }

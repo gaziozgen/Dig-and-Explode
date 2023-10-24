@@ -7,39 +7,29 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1058481662609:android:ab1bc179ac9ddd01b32d30",
+        "mobilesdk_app_id": "1:1058481662609:ios:96de615051006be6b32d30",
         "android_client_info": {
           "package_name": "com.voyager.digandexplode"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "1058481662609-oedvtekn70i6sk3lsbuiu8fgh6nk31h8.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
       "api_key": [
         {
-          "current_key": "AIzaSyDc77HyFy-txu5jDYezTUxDsho6b78UCzE"
+          "current_key": "AIzaSyDvJK9PNVPt6_gqdX59f3w1HW-uxnnAIA4"
         }
       ],
       "services": {
+        "analytics_service": {
+          "status": 0
+        },
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "1058481662609-oedvtekn70i6sk3lsbuiu8fgh6nk31h8.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "1058481662609-v5uq46i9lf2b7cp96mft0onlf7ca9hpu.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.voyager.digandexplode"
-              }
-            }
-          ]
+          "status": 1
         }
-      }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1058481662609-v5uq46i9lf2b7cp96mft0onlf7ca9hpu.apps.googleusercontent.com"
+        }
+      ]
     }
   ],
   "configuration_version": "1"

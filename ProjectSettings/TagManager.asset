@@ -12,11 +12,11 @@ TagManager:
   - 
   - Water
   - UI
-  - Digger
-  - Digger Teeth
+  - Tool
+  - Digger Teeth trigger
   - Diggable
-  - 
-  - 
+  - Dug
+  - Digger Teeth collider
   - 
   - 
   - 

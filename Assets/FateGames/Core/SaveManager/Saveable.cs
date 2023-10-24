@@ -5,7 +5,7 @@ using System.Reflection;
 using UnityEngine;
 using UnityEditor;
 using UnityEngine.Events;
-using UnityEditor.SceneManagement;
+//using UnityEditor.SceneManagement;
 
 [ExecuteInEditMode]
 public class Saveable : MonoBehaviour
@@ -174,7 +174,7 @@ public class Saveable : MonoBehaviour
     }
     protected virtual void OnValidate()
     {
-        bool inPrefabMode = PrefabStageUtility.GetCurrentPrefabStage() != null || gameObject.scene.name == null;
+        /*bool inPrefabMode = PrefabStageUtility.GetCurrentPrefabStage() != null || gameObject.scene.name == null;
         List<string> keys = new();
         List<string> fieldNames = new();
         for (int i = 0; i < fieldKeys.Count; i++)
@@ -193,7 +193,7 @@ public class Saveable : MonoBehaviour
             if (inPrefabMode) fieldKey.key = "";
             else
                 keys.Add(fieldKey.key);
-        }
+        }*/
 
     }
 
@@ -208,7 +208,7 @@ public class Saveable : MonoBehaviour
 
 }
 
-[CustomEditor(typeof(Saveable))]
+/*[CustomEditor(typeof(Saveable))]
 public class SaveableEditor : Editor
 {
     SerializedProperty saveTarget;
@@ -245,4 +245,4 @@ public class SaveableEditor : Editor
         }
 
     }
-}
+}*/
