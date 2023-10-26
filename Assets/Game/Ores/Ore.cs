@@ -48,6 +48,11 @@ public class Ore : FateMonoBehaviour, IDiggable, IVacuumable
         meshRenderer.material = staticMeshMaterial;
     }
 
+    private void Start()
+    {
+        GetDug();
+    }
+
     /*private void Update()
     {
         rb.ResetInertiaTensor();
@@ -70,6 +75,7 @@ public class Ore : FateMonoBehaviour, IDiggable, IVacuumable
         rb.isKinematic = false;
         meshRenderer.material = dynamicMeshMaterial;
         gameObject.layer = 9;
+
         trigger.enabled = false;
         staticCollider.enabled = false;
         dynamicCollider.enabled = true;

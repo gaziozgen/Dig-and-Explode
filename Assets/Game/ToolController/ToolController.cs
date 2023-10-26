@@ -13,9 +13,11 @@ public class ToolController : FateMonoBehaviour
     [SerializeField] float minimumReducedSpeedRatio = 0.2f;
     [SerializeField] float overlapRadius = 1;
     [SerializeField] int maxCollider = 40;
+    [SerializeField] float recoilMultiplier = 0.1f;
     [SerializeField] Rigidbody rb;
     [SerializeField] ToolSwitcher toolSwitcher;
     [SerializeField] GameObject rope;
+    [SerializeField] Swerve swerve;
     /*[Header("Borders")]
     [SerializeField] float right;
     [SerializeField] float left;
@@ -40,18 +42,23 @@ public class ToolController : FateMonoBehaviour
         numOverlapColliders = Physics.OverlapSphereNonAlloc(transform.position, overlapRadius, overlapColliders, dugLayerMask, QueryTriggerInteraction.Ignore);
         if (isWorking) toolSwitcher.CurrentTool.OnWork();
         else toolSwitcher.CurrentTool.OnNotWork();
+
         rb.velocity = Vector3.zero;
     }
 
     public void Move(Swerve swerve)
     {
         float speed = Time.deltaTime * baseSpeed * swerve.Rate * SpeedMultiplier;
-        /*Vector3 pos = Vector3.MoveTowards(transform.position, transform.position + (Vector3)swerve.Direction * speed, speed);
-        *//*pos.x = Mathf.Clamp(pos.x, -left, right);
-        pos.y = Mathf.Clamp(pos.y, -bottom, top);*//*
-        transform.position = pos;*/
-        rb.AddForce((Vector3)swerve.Direction * speed * rb.mass * 2500, ForceMode.Force);
+        Vector3 pos = Vector3.MoveTowards(transform.position, transform.position + (Vector3)swerve.Direction * speed, speed);
+        /*pos.x = Mathf.Clamp(pos.x, -left, right);
+        pos.y = Mathf.Clamp(pos.y, -bottom, top);*/
+        transform.position = pos;
+        //rb.AddForce((Vector3)swerve.Direction * speed * rb.mass, ForceMode.Force);
+    }
 
+    public void Recoil(Vector3 direction)
+    {
+        rb.AddForce(direction * rb.mass * recoilMultiplier, ForceMode.Impulse);
     }
 
     public void SetWorking(bool working)

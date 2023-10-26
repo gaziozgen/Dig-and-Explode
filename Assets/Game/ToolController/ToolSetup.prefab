@@ -1345,9 +1345,12 @@ MonoBehaviour:
   minimumReducedSpeedRatio: 0.25
   overlapRadius: 1.3
   maxCollider: 40
+  recoilMultiplier: 2
+  recoilDuration: 0.2
   rb: {fileID: 928399784120562245}
   toolSwitcher: {fileID: 327962630992682178}
   rope: {fileID: 1510458323621545537}
+  swerve: {fileID: 1461766057556437665}
 --- !u!114 &327962630992682178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1433,7 +1436,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8220805252386018926}
   serializedVersion: 4
-  m_Mass: 100
+  m_Mass: 10000
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -1846,6 +1849,11 @@ PrefabInstance:
       propertyPath: maxCollider
       value: 60
       objectReference: {fileID: 0}
+    - target: {fileID: 8393682364383506095, guid: 36d0f67166241ce4c96e7850d8cb79f0,
+        type: 3}
+      propertyPath: ToolController
+      value: 
+      objectReference: {fileID: 1144536442439470311}
     - target: {fileID: 8393682364383506095, guid: 36d0f67166241ce4c96e7850d8cb79f0,
         type: 3}
       propertyPath: toolController

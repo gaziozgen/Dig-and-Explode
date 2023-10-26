@@ -284,6 +284,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: StoneLayer (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1221982961368950160, guid: 9ff90af22757a664ea5677a32754c63b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3531552926733037371, guid: 9ff90af22757a664ea5677a32754c63b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2018,6 +2023,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: StoneLayer
       objectReference: {fileID: 0}
+    - target: {fileID: 1221982961368950160, guid: 9ff90af22757a664ea5677a32754c63b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3531552926733037371, guid: 9ff90af22757a664ea5677a32754c63b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2081,6 +2091,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -1081917552667334646, guid: d5a983cf469d2aa428a865a6cd2e1cb9,
+        type: 3}
+      propertyPath: defaultTargetFrameRate
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 2196546718344236182, guid: d5a983cf469d2aa428a865a6cd2e1cb9,
         type: 3}
       propertyPath: m_RootOrder
@@ -2392,6 +2407,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: StoneLayer (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1221982961368950160, guid: 9ff90af22757a664ea5677a32754c63b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3531552926733037371, guid: 9ff90af22757a664ea5677a32754c63b,
         type: 3}

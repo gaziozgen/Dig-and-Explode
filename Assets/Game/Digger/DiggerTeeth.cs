@@ -19,9 +19,9 @@ public class DiggerTeeth : FateMonoBehaviour
             }
             else
             {
-                Vector3 dir = digger.transform.position - other.transform.position;
+                Vector3 dir = transform.position - other.transform.position;
                 dir.z = 0;
-                digger.Recoil(dir.normalized);
+                digger.ToolController.Recoil(dir.normalized);
             }
         }
     }

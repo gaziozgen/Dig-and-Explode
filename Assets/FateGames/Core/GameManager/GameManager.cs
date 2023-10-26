@@ -104,7 +104,7 @@ namespace FateGames.Core
             GameAnalytics.Initialize();
             yield return facebookManager.Initialize();
             if (AdManager.Instance)
-                /*AdManager.Instance.Initialize();*/
+                AdManager.Instance.Initialize();
             thirdPartyInitialized = true;
 
         }

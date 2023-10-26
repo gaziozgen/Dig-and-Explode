@@ -15,7 +15,8 @@ public class Digger : Tool
     [SerializeField] float rotationAccelerationDuration = 2;
     [SerializeField] float baseMaxRotationSpeed = 10;
     [SerializeField] float maxRotationSpeedIncreasePerLevel = 50;
-    [SerializeField] ToolController toolController;
+
+    public ToolController ToolController;
 
     public bool Working { get; private set; }
 
@@ -50,11 +51,6 @@ public class Digger : Tool
 
     public float Power() { return basePower + level * powerIncreasePerLevel; }
 
-    public void Recoil(Vector3 direction)
-    {
-        toolController.GetRigidbody().AddForce(direction * toolController.GetRigidbody().mass * 2, ForceMode.Impulse);
-    }
-
     void AccelerateRotation()
     {
         rotationVelocity = Mathf.Clamp(rotationVelocity + Time.deltaTime * MaxSpeed / rotationAccelerationDuration, 0, MaxSpeed);
@@ -67,7 +63,7 @@ public class Digger : Tool
 
     void Rotate()
     {
-        float finalRotationVelocity = rotationVelocity * toolController.SpeedMultiplier;
+        float finalRotationVelocity = rotationVelocity * ToolController.SpeedMultiplier;
         transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + Time.deltaTime * finalRotationVelocity * Vector3.back);
     }
 

@@ -50,7 +50,7 @@ MonoBehaviour:
   bombCount: 99
   baseRange: 1
   basePower: 11
-  rangeIncreasePerLevel: 0.1
+  rangeIncreasePerLevel: 0.2
   powerIncreasePerLevel: 2
   level: 0
   outline: {fileID: 215696236857925760}

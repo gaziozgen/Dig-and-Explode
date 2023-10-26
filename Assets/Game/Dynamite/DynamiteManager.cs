@@ -2,7 +2,9 @@ using FateGames.Core;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class DynamiteManager : MonoBehaviour
 {
@@ -30,7 +32,8 @@ public class DynamiteManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) && BombControl && bombCount > 0)
+        bool onUI = EventSystem.current.IsPointerOverGameObject() || EventSystem.current.currentSelectedGameObject != null;
+        if (Input.GetMouseButtonDown(0) && BombControl && bombCount > 0 && !onUI)
         {
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
