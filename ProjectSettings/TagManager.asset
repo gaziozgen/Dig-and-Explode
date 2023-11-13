@@ -5,11 +5,13 @@ TagManager:
   serializedVersion: 2
   tags:
   - Diggable
+  - Buying Zone
+  - Level Portal
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
   - Tool
@@ -17,7 +19,7 @@ TagManager:
   - Diggable
   - Dug
   - Digger Teeth Collider
-  - 
+  - Interactable
   - 
   - 
   - 

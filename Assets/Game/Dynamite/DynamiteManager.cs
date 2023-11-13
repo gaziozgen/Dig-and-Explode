@@ -9,18 +9,19 @@ using UnityEngine.EventSystems;
 public class DynamiteManager : MonoBehaviour
 {
     [SerializeField] GameObject dynamitePrefab;
-    FateObjectPool<Dynamite> dynamitePool;
-
     [SerializeField] int bombCount = 10;
     [SerializeField] float baseRange = 1;
     [SerializeField] float basePower = 1;
     [SerializeField] float rangeIncreasePerLevel = 0.5f;
     [SerializeField] float powerIncreasePerLevel = 1;
-    [SerializeField] int level = 0;
+    [SerializeField] IntVariable level;
+    [SerializeField] Camera diggingCamera;
     [SerializeField] GameObject outline;
     [SerializeField] TextMeshProUGUI bombText;
     [SerializeField] GameEvent onBombControllOn;
     [SerializeField] GameEvent onBombControllOff;
+
+    FateObjectPool<Dynamite> dynamitePool;
 
     public bool BombControl { get; private set; } = false;
 
@@ -36,7 +37,7 @@ public class DynamiteManager : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && BombControl && bombCount > 0 && !onUI)
         {
             RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Ray ray = diggingCamera.ScreenPointToRay(Input.mousePosition);
 
             if (Physics.Raycast(ray, out hit))
             {
@@ -47,15 +48,10 @@ public class DynamiteManager : MonoBehaviour
                     bombCount--;
                     bombText.text = bombCount.ToString();
                     Dynamite dynamite = dynamitePool.Get(hit.point);
-                    dynamite.Explode(baseRange + level * rangeIncreasePerLevel, basePower + level * powerIncreasePerLevel);
+                    dynamite.Explode(baseRange + level.Value * rangeIncreasePerLevel, basePower + level.Value * powerIncreasePerLevel);
                 }
             }
         }
-    }
-
-    public void LevelUp()
-    {
-        level++;
     }
 
     public void ToggleBombControl()

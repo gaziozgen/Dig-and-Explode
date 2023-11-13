@@ -1,55 +1,65 @@
+using FateGames.Core;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Digger : Tool
 {
     [SerializeField] List<DiggerLevel> levels;
-    public EffectPool EffectPool;
-    [SerializeField] int level = 0;
+    public EffectPool DigEffectPool;
+    [SerializeField] EffectPool recoilEffectPool;
+    [SerializeField] IntVariable level;
+    [SerializeField] float pushPowerMultiplier = 1;
     [SerializeField] float basePower = 1;
     [SerializeField] float powerIncreasePerLevel = 1;
     [SerializeField] float slowdownDereasePerLevel = 0.1f;
     [SerializeField] float rotationAccelerationDuration = 2;
     [SerializeField] float baseMaxRotationSpeed = 10;
     [SerializeField] float maxRotationSpeedIncreasePerLevel = 50;
-
-    public ToolController ToolController;
+    [SerializeField] ToolController ToolController;
 
     public bool Working { get; private set; }
 
+    int lastLevel = 0;
     float rotationVelocity = 0;
+    float finalRotationVelocity;
 
-    private float MaxSpeed => baseMaxRotationSpeed + level * maxRotationSpeedIncreasePerLevel;
+    private float MaxSpeed => baseMaxRotationSpeed + level.Value * maxRotationSpeedIncreasePerLevel;
 
-    private void Start()
+    private void OnEnable()
     {
-        SetLevel(level);
+        UpdateLevel();
     }
 
     public override float SlowdownMultiplier()
     {
-        return Mathf.Pow(1 - slowdownDereasePerLevel, level);
+        return Mathf.Pow(1 - slowdownDereasePerLevel, level.Value);
     }
 
-    public void levelUp()
+    public float PushPower()
     {
-        if (level == levels.Count) return;
-        print("LEVEL UP");
-        levels[level].Apply();
-        level++;
+        return finalRotationVelocity * pushPowerMultiplier;
     }
 
-    public void SetLevel(int level)
+    public void UpdateLevel()
     {
-        this.level = level;
-        for (int i = 0; i < level; i++)
-            levels[i].Apply();
+        if (lastLevel < level.Value)
+        {
+            int dif = level.Value - lastLevel;
+            for (int i = 0; i < dif; i++)
+                levels[i].Apply();
+            lastLevel = level.Value;
+        }
     }
 
-    public float Power() { return basePower + level * powerIncreasePerLevel; }
+    public void Recoil(Vector3 direction, Vector3 pos)
+    {
+        recoilEffectPool.Get().transform.position = pos;
+        ToolController.Recoil(direction);
+    }
+
+    public float Power() { return basePower + level.Value * powerIncreasePerLevel; }
 
     void AccelerateRotation()
     {
@@ -63,7 +73,7 @@ public class Digger : Tool
 
     void Rotate()
     {
-        float finalRotationVelocity = rotationVelocity * ToolController.SpeedMultiplier;
+        finalRotationVelocity = rotationVelocity * ToolController.SpeedMultiplier;
         transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + Time.deltaTime * finalRotationVelocity * Vector3.back);
     }
 

@@ -7,6 +7,7 @@ using UnityEngine;
 public class Vacuum : Tool
 {
     [SerializeField] float rotateSpeed = 5f;
+    [SerializeField] DiggerMachine diggerMachine;
     [SerializeField] ToolController toolController;
     [SerializeField] Rope rope;
     [SerializeField] ParticleSystem vacuumEffect;
@@ -56,6 +57,7 @@ public class Vacuum : Tool
                 vacuumables.Add(vacuumable);
                 vacuumable.GetVacuumed(this, () =>
                 {
+                    diggerMachine.AddOre(vacuumable.Type, vacuumable.OreValue);
                     vacuumables.Remove(vacuumable);
                     rope.AddWave();
                 });

@@ -3,15 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using FateGames.Core;
 using System;
+using DG.Tweening;
 
 [RequireComponent(typeof(Rigidbody))]
 public class Ore : FateMonoBehaviour, IDiggable, IVacuumable
 {
+    [SerializeField] int type = 0;
     [SerializeField] Gem gem = null;
     [SerializeField] float power = 1f;
     [SerializeField] float vacuumDestroyDistance = 0.1f;
     [SerializeField] float vacuumAcceleration = 5;
     [SerializeField] Material staticMeshMaterial, dynamicMeshMaterial;
+    [SerializeField] DugRuntimeSet dugRuntimeSet = null;
+
+    public int OreValue { get; private set; } = 1;
 
     Rigidbody rb;
     Collider staticCollider;
@@ -22,8 +27,7 @@ public class Ore : FateMonoBehaviour, IDiggable, IVacuumable
 
     Action onVacuumEnd;
     Action onGetDug = null;
-    float vacuumStartTime;
-
+    float vacuumStartTime = -1;
 
     private void Awake()
     {
@@ -33,14 +37,6 @@ public class Ore : FateMonoBehaviour, IDiggable, IVacuumable
         staticCollider = colliders[1];
         dynamicCollider = colliders[2];
 
-        /*for (int i = 0; i < 2; i++)
-        {
-            if (colliders[i].isTrigger) trigger = colliders[i];
-            else staticCollider = colliders[i];
-        }
-
-        dynamicCollider = GetComponent<BoxCollider>();*/
-
         rb = GetComponent<Rigidbody>();
         rb.isKinematic = true;
 
@@ -48,16 +44,12 @@ public class Ore : FateMonoBehaviour, IDiggable, IVacuumable
         meshRenderer.material = staticMeshMaterial;
     }
 
-    private void Start()
+    /*private void Start()
     {
-        GetDug();
-    }
-
-    /*private void Update()
-    {
-        rb.ResetInertiaTensor();
-        rb.angularVelocity = Vector3.forward * rb.angularVelocity.z;
+        DOVirtual.DelayedCall(-transform.position.y/10 - 4, GetDug);
     }*/
+
+    public int Type => type;
 
     public float Power() { return power; }
 
@@ -79,6 +71,8 @@ public class Ore : FateMonoBehaviour, IDiggable, IVacuumable
         trigger.enabled = false;
         staticCollider.enabled = false;
         dynamicCollider.enabled = true;
+
+        CheckDugMember();
     }
 
     public void GetVacuumed(Vacuum vacuum, Action onVacuumEnd)
@@ -88,6 +82,8 @@ public class Ore : FateMonoBehaviour, IDiggable, IVacuumable
         dynamicCollider.enabled = false;
         this.onVacuumEnd = onVacuumEnd;
         vacuumStartTime = Time.time;
+
+        CheckDugMember();
     }
 
     public void OnVacuum(Vacuum vacuum)
@@ -113,4 +109,69 @@ public class Ore : FateMonoBehaviour, IDiggable, IVacuumable
     }
 
     public Rigidbody GetRigidbody() { return rb; }
+
+    public bool IsRigidbodyKinematic => rb.isKinematic;
+
+    public void SetRigidbodyKinematic(bool kinematic)
+    {
+        rb.isKinematic = kinematic;
+        CheckDugMember();
+    }
+
+    public void AddForce(Vector3 force)
+    {
+        rb.AddForce(force, ForceMode.VelocityChange);
+    }
+
+    public bool IsDestroyed { get; private set; } = false;
+    public void DestroyOre(bool withAnimation = false)
+    {
+        IsDestroyed = true;
+        dynamicCollider.enabled = false;
+        SetRigidbodyKinematic(true);
+
+        if (withAnimation) transform.DOScale(0, 0.5f).SetEase(Ease.InCirc).OnComplete(() => Destroy(gameObject));
+        else Destroy(gameObject);
+    }
+
+    public void AddOreValue(int value)
+    {
+        OreValue += value;
+    }
+    public Collider DynamicCollider => dynamicCollider;
+
+
+    bool inRuntimeSet = false;
+    private void CheckDugMember()
+    {
+        if (inRuntimeSet)
+        {
+            if (IsDestroyed || rb.isKinematic || !gameObject.activeInHierarchy || vacuumStartTime != -1)
+            {
+                dugRuntimeSet.Remove(this);
+                inRuntimeSet = false;
+            }
+        }
+        else
+        {
+            if (!IsDestroyed && !rb.isKinematic && gameObject.activeInHierarchy && isDug && vacuumStartTime == -1)
+            {
+                dugRuntimeSet.Add(this);
+                inRuntimeSet = true;
+            }
+        }
+
+        if (dugRuntimeSet.List.Contains(this) != inRuntimeSet)
+            Debug.LogError(dugRuntimeSet.List.Contains(this) + " " + inRuntimeSet, this);
+    }
+
+    private void OnEnable()
+    {
+        CheckDugMember();
+    }
+
+    private void OnDisable()
+    {
+        CheckDugMember();
+    }
 }

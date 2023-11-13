@@ -4,7 +4,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.UIElements.UxmlAttributeDescription;
 
 public class Dynamite : FateMonoBehaviour, IPooledObject
 {
@@ -31,20 +30,21 @@ public class Dynamite : FateMonoBehaviour, IPooledObject
             effect.Play();
             mesh.gameObject.SetActive(false);
 
+            OptimizationManager.Instance.UnlockArea(transform.position, range + 1, false);
+
             Collider[] colliders = Physics.OverlapSphere(transform.position, range, layerMask);
 
             List<Ore> ores = new();
             for (int i = 0; i < colliders.Length; i++)
             {
                 Ore ore = colliders[i].GetComponent<Ore>();
-                if (ore != null && !ores.Contains(ore) && ore.Power() <= power)
+                if (ore != null && !ore.IsDestroyed && !ores.Contains(ore) && ore.Power() <= power)
                 {
                     ores.Add(ore);
-                    if (!ore.IsDug()) ore.GetDug();
+                    if (ore.isActiveAndEnabled && !ore.IsDug()) ore.GetDug();
                     ore.GetRigidbody().AddForce((baseForce + UnityEngine.Random.Range(randomForceRange.x, randomForceRange.y)) * Vector3.up, ForceMode.VelocityChange);
                 }
             }
-                
             DOVirtual.DelayedCall(releaseDelay, () => { Release(); });
         });
 

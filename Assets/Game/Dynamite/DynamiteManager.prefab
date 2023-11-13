@@ -52,7 +52,8 @@ MonoBehaviour:
   basePower: 11
   rangeIncreasePerLevel: 0.2
   powerIncreasePerLevel: 2
-  level: 0
+  level: {fileID: 11400000, guid: 45691e20c15da37449614d3bb11e3fd0, type: 2}
+  diggingCamera: {fileID: 0}
   outline: {fileID: 215696236857925760}
   bombText: {fileID: 6290659140039354001}
   onBombControllOn: {fileID: 11400000, guid: 38d151e7398eac34ea8d06a2efa0fb56, type: 2}

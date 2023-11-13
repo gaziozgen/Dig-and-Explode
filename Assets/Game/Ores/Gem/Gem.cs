@@ -43,6 +43,7 @@ public class Gem : FateMonoBehaviour
             if (!gemParticles[i].IsDug()) gemParticles[i].GetDug();
 
         for (int i = 0; i < dirts.Count; i++)
-            if (!dirts[i].IsDug()) Destroy(dirts[i].gameObject);
+            if (dirts[i] != null && !dirts[i].IsDug()) dirts[i].DestroyOre();
+
     }
 }

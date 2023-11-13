@@ -4,6 +4,8 @@ using UnityEngine;
 
 public interface IDiggable
 {
+    public void AddForce(Vector3 force);
+
     public bool IsDug();
 
     public void GetDug();

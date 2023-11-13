@@ -5,6 +5,10 @@ using UnityEngine;
 
 public interface IVacuumable
 {
+    public int Type { get; }
+
+    public int OreValue { get; }
+
     public void GetVacuumed(Vacuum vacuum, Action onVacuumEnd);
 
     public void OnVacuum(Vacuum vacuum);

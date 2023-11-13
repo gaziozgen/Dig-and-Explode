@@ -11,20 +11,6 @@ public class Follower : FateMonoBehaviour
     [SerializeField] bool freezeX;
     [SerializeField] bool freezeY;
     [SerializeField] bool freezeZ;
-    [SerializeField] float targetHorizontalFov = 35;
-
-    Camera cam;
-
-    private void Awake()
-    {
-        cam = GetComponent<Camera>();
-        cam.fieldOfView = 2.0f * Mathf.Atan(Mathf.Tan(targetHorizontalFov * Mathf.Deg2Rad / 2) / cam.aspect) * Mathf.Rad2Deg;
-    }
-
-    private void Update()
-    {
-
-    }
 
     private void LateUpdate()
     {

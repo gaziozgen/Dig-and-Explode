@@ -38,5 +38,12 @@ namespace FateGames.Core
                 Items[index] = value;
             }
         }
+
+        public List<T> List => Items;
+
+        public void Clear()
+        {
+            Items.Clear();
+        }
     }
 }

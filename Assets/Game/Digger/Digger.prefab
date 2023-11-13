@@ -509,6 +509,7 @@ GameObject:
   - component: {fileID: 8393682364383506095}
   - component: {fileID: 4599674242719617419}
   - component: {fileID: 6962653726125660632}
+  - component: {fileID: 7257310523736623195}
   m_Layer: 6
   m_Name: Digger
   m_TagString: Untagged
@@ -586,15 +587,17 @@ MonoBehaviour:
     - {fileID: 2294717253065097856}
     activateList:
     - {fileID: 5871225603702713854}
-  EffectPool: {fileID: 6962653726125660632}
-  level: 0
+  DigEffectPool: {fileID: 6962653726125660632}
+  recoilEffectPool: {fileID: 7257310523736623195}
+  level: {fileID: 11400000, guid: 50d6be5c4505a564681c68c554bc8791, type: 2}
+  pushPowerMultiplier: 0.003
   basePower: 1
   powerIncreasePerLevel: 1
   slowdownDereasePerLevel: 0.05
   rotationAccelerationDuration: 1
   baseMaxRotationSpeed: 400
   maxRotationSpeedIncreasePerLevel: 30
-  toolController: {fileID: 0}
+  ToolController: {fileID: 0}
 --- !u!136 &4599674242719617419
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -633,6 +636,21 @@ MonoBehaviour:
   effectPrefab: {fileID: 5909181820732387219, guid: 859a362a546afbf41a73063d146a92ed,
     type: 3}
   maxSize: 30
+--- !u!114 &7257310523736623195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5626747712938151422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d241c4f2db5d50479b44b372e3f2458, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectPrefab: {fileID: 8629405710143314546, guid: fcf54370cae2e644ab9d3ea90ef81f61,
+    type: 3}
+  maxSize: 5
 --- !u!1 &5871225603702713854
 GameObject:
   m_ObjectHideFlags: 0

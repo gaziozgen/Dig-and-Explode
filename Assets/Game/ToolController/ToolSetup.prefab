@@ -895,7 +895,7 @@ Transform:
   m_GameObject: {fileID: 5533200558367226137}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.7071072, w: -0.7071065}
-  m_LocalPosition: {x: 0.0000023841856, y: 11.2, z: 0}
+  m_LocalPosition: {x: -0, y: 15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -917,76 +917,101 @@ MonoBehaviour:
   m_CollisionMaterial: {fileID: 0}
   m_SurfaceCollisions: 0
   m_SelfCollisions: 0
-  restLength_: 10.207437
+  restLength_: 14.614507
   elements:
   - particle1: 0
     particle2: 1
-    restLength: 0.010672569
+    restLength: 0.32004356
     constraintForce: 0
     tearResistance: 1
   - particle1: 1
     particle2: 2
-    restLength: 0.6614294
+    restLength: 0.7023783
     constraintForce: 0
     tearResistance: 1
   - particle1: 2
     particle2: 3
-    restLength: 0.78439426
+    restLength: 0.79629517
     constraintForce: 0
     tearResistance: 1
   - particle1: 3
     particle2: 4
-    restLength: 0.7991853
+    restLength: 0.7912359
     constraintForce: 0
     tearResistance: 1
   - particle1: 4
     particle2: 5
-    restLength: 0.7953911
+    restLength: 0.8005314
     constraintForce: 0
     tearResistance: 1
   - particle1: 5
     particle2: 6
-    restLength: 0.79925585
+    restLength: 0.8016739
     constraintForce: 0
     tearResistance: 1
   - particle1: 6
     particle2: 7
-    restLength: 0.79388094
+    restLength: 0.8017521
     constraintForce: 0
     tearResistance: 1
   - particle1: 7
     particle2: 8
-    restLength: 0.79566574
+    restLength: 0.8020506
     constraintForce: 0
     tearResistance: 1
   - particle1: 8
     particle2: 9
-    restLength: 0.79614925
+    restLength: 0.80195284
     constraintForce: 0
     tearResistance: 1
   - particle1: 9
     particle2: 10
-    restLength: 0.7950697
+    restLength: 0.8007746
     constraintForce: 0
     tearResistance: 1
   - particle1: 10
     particle2: 11
-    restLength: 0.7944255
+    restLength: 0.7997618
     constraintForce: 0
     tearResistance: 1
   - particle1: 11
     particle2: 12
-    restLength: 0.80026674
+    restLength: 0.80143833
     constraintForce: 0
     tearResistance: 1
   - particle1: 12
     particle2: 13
-    restLength: 0.7953563
+    restLength: 0.8018608
     constraintForce: 0
     tearResistance: 1
   - particle1: 13
     particle2: 14
-    restLength: 0.786294
+    restLength: 0.80144644
+    constraintForce: 0
+    tearResistance: 1
+  - particle1: 14
+    particle2: 15
+    restLength: 0.80104375
+    constraintForce: 0
+    tearResistance: 1
+  - particle1: 15
+    particle2: 16
+    restLength: 0.8016324
+    constraintForce: 0
+    tearResistance: 1
+  - particle1: 16
+    particle2: 17
+    restLength: 0.80257916
+    constraintForce: 0
+    tearResistance: 1
+  - particle1: 17
+    particle2: 18
+    restLength: 0.79175764
+    constraintForce: 0
+    tearResistance: 1
+  - particle1: 18
+    particle2: 19
+    restLength: 0.7942981
     constraintForce: 0
     tearResistance: 1
   m_RopeBlueprint: {fileID: 11400000, guid: 712bc0e3a04550547b095103efd64b46, type: 2}
@@ -1278,7 +1303,7 @@ Transform:
   m_GameObject: {fileID: 8202717838246965925}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 10, z: 0}
+  m_LocalPosition: {x: 0, y: 14, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1346,7 +1371,6 @@ MonoBehaviour:
   overlapRadius: 1.3
   maxCollider: 40
   recoilMultiplier: 2
-  recoilDuration: 0.2
   rb: {fileID: 928399784120562245}
   toolSwitcher: {fileID: 327962630992682178}
   rope: {fileID: 1510458323621545537}

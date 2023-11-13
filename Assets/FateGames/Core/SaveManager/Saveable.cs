@@ -5,7 +5,9 @@ using System.Reflection;
 using UnityEngine;
 using UnityEditor;
 using UnityEngine.Events;
-//using UnityEditor.SceneManagement;
+#if UNITY_EDITOR
+using UnityEditor.SceneManagement;
+#endif
 
 [ExecuteInEditMode]
 public class Saveable : MonoBehaviour
@@ -27,7 +29,7 @@ public class Saveable : MonoBehaviour
                 }
                 OnValidate();
             }
-            
+
         }
         else
         {
@@ -172,35 +174,58 @@ public class Saveable : MonoBehaviour
             }
         }
     }
+#if UNITY_EDITOR
+    List<string> keys = new();
+    List<string> fieldNames = new();
+#endif
     protected virtual void OnValidate()
     {
-        /*bool inPrefabMode = PrefabStageUtility.GetCurrentPrefabStage() != null || gameObject.scene.name == null;
-        List<string> keys = new();
-        List<string> fieldNames = new();
+#if UNITY_EDITOR
+        keys.Clear();
+        fieldNames.Clear();
+        bool inPrefabMode = PrefabStageUtility.GetCurrentPrefabStage() != null || gameObject.scene.name == null;
+
         for (int i = 0; i < fieldKeys.Count; i++)
         {
             FateFieldKey fieldKey = fieldKeys[i];
             if (fieldKey.fieldName != null && fieldKey.fieldName != "" && !fieldNames.Contains(fieldKey.fieldName))
+            {
+                Debug.Log("fieldKey.fieldName: " + fieldKey.fieldName, this);
+                Debug.Log("fieldNames.Contains(fieldKey.fieldName): " + fieldNames.Contains(fieldKey.fieldName), this);
                 fieldNames.Add(fieldKey.fieldName);
+            }
             else if (fieldNames.Contains(fieldKey.fieldName))
+            {
+                Debug.Log("fieldNames.Contains(fieldKey.fieldName): " + fieldNames.Contains(fieldKey.fieldName), this);
                 fieldKey.fieldName = "";
+            }
             if ((fieldKey.key == null || fieldKey.key == "" || keys.Contains(fieldKey.key)) && !inPrefabMode)
             {
+
+                Debug.Log("fieldKey.key: " + fieldKey.key, this);
+                Debug.Log("keys.Contains(fieldKey.key): " + keys.Contains(fieldKey.key), this);
 
                 fieldKey.key = GenerateKey();
 
             }
-            if (inPrefabMode) fieldKey.key = "";
+            if (inPrefabMode)
+            {
+                Debug.Log("inprefabmode", this);
+                fieldKey.key = "";
+            }
             else
+            {
+                Debug.Log("not in prefabmode", this);
                 keys.Add(fieldKey.key);
-        }*/
-
+            }
+        }
+#endif
     }
 
     private string GenerateKey()
     {
         string key = Guid.NewGuid().ToString();
-        Debug.Log($"New key generated: {key}", this);
+        Debug.Log($"???????????????????????????????????????????????????????????New key generated: {key}", this);
         return key;
     }
 
@@ -208,7 +233,8 @@ public class Saveable : MonoBehaviour
 
 }
 
-/*[CustomEditor(typeof(Saveable))]
+#if UNITY_EDITOR
+[CustomEditor(typeof(Saveable))]
 public class SaveableEditor : Editor
 {
     SerializedProperty saveTarget;
@@ -245,4 +271,5 @@ public class SaveableEditor : Editor
         }
 
     }
-}*/
+}
+#endif
