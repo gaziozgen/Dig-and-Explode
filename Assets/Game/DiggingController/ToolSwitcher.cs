@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,6 +16,7 @@ public class ToolSwitcher : MonoBehaviour
     {
         currentTool = tools[0];
         toggles[0].isOn = true;
+        toggles[0].interactable = false;
     }
 
     public void SwitchHead(int index)
@@ -22,7 +24,7 @@ public class ToolSwitcher : MonoBehaviour
         if (tools[index] == currentTool) return;
 
         toggles[index].interactable = false;
-        toggles[1-index].interactable = true;
+        toggles[1 - index].interactable = true;
         toggles[1 - index].isOn = false;
 
         currentTool.OnDeselect();

@@ -9,6 +9,7 @@ public class Gem : FateMonoBehaviour
     [SerializeField] GameObject gemMesh = null;
     [SerializeField] Transform gemPartsParent = null;
     [SerializeField] LayerMask layerMask;
+    [SerializeField] SoundEntity sound;
 
     List<Ore> gemParticles = new();
     List<Ore> dirts = new();
@@ -32,9 +33,16 @@ public class Gem : FateMonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        if (destructed) gemMesh.SetActive(false);
+    }
+
     public void Destruct()
     {
         if (destructed) return;
+        GameManager.Instance.PlaySoundOneShot(sound);
+        //AdManager.Instance.ShowInterstitial();
         destructed = true;
 
         gemMesh.SetActive(false);

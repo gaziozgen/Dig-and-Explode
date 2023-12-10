@@ -14,6 +14,7 @@ public class MoneyPile : FateMonoBehaviour
     [SerializeField] int amount = 0;
     [SerializeField] UnityEvent onDepleted;
     [SerializeField] int capacity = 90;
+    //[SerializeField] SoundEntity sound;
     //[SerializeField] MoneyPileRuntimeSet moneyPileRuntimeSet;
     List<Money3D> moneys = new();
     public int Count => moneys.Count;
@@ -58,7 +59,6 @@ public class MoneyPile : FateMonoBehaviour
             onDepleted.Invoke();
     }
 
-
     public void Add(Money3D money)
     {
         if (Count >= capacity)
@@ -83,8 +83,22 @@ public class MoneyPile : FateMonoBehaviour
         //UpdateMoneyCount();
     }
 
+    public void AddAmountOfMoney(int amount, int count, Vector3 from)
+    {
+        int value = Mathf.CeilToInt(amount / (float)count);
+        int totalAmount = 0;
+        while (totalAmount < amount)
+        {
+            Money3D money = MoneyManager.Instance.MoneyPool.Get(from);
+            money.value = Mathf.Clamp(value, 1, amount - totalAmount);
+            totalAmount += money.value;
+            Add(money);
+        }
+    }
+
     public bool TryRemove(out Money3D money)
     {
+        //GameManager.Instance.PlaySoundOneShot(sound);
         money = null;
         if (Count == 0) return false;
         money = moneys[^1];

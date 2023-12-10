@@ -8,6 +8,28 @@ public class FirebaseEventManager : ScriptableObject
 {
     private readonly static string levelProgressEventName = "LevelProgress";
     static int level = 1;
+
+    public static void SendTaskStartEvent(string taskName)
+    {
+        Debug.Log($"SendTaskStartEvent: {taskName}");
+        if (taskName == null || taskName == "") return;
+        FirebaseAnalytics.LogEvent(taskProgressEventName, new Parameter("taskStarted", taskName));
+    }
+    public static void SendTaskCompleteEvent(string taskName)
+    {
+        Debug.Log($"SendTaskCompleteEvent: {taskName}");
+        if (taskName == null || taskName == "") return;
+        FirebaseAnalytics.LogEvent(taskProgressEventName, new Parameter("taskCompleted", taskName));
+    }
+    private readonly static string taskProgressEventName = "TaskProgress";
+
+    public static void SendUpgradeEvent(string upgradeName)
+    {
+        Debug.Log($"SendTaskStartEvent: {upgradeName}");
+        if (upgradeName == null || upgradeName == "") return;
+        FirebaseAnalytics.LogEvent("UpgradeProgress", new Parameter("upgraded", upgradeName));
+    }
+
     public static void SendEvent(string eventName)
     {
         if (eventName == null || eventName == "") return;

@@ -14,6 +14,7 @@ namespace FateGames.Core
         [Header("Properties")]
         [SerializeField] private GameStateVariable gameState;
         [SerializeField] private SplashScreen splashScreen;
+        [SerializeField] LoadingScreen loadingScreen;
         [Header("Target Frame Rate")]
         [SerializeField] private int defaultTargetFrameRate = -1;
         [Header("Save Management")]
@@ -22,7 +23,7 @@ namespace FateGames.Core
         [Header("Scene Management")]
         [SerializeField] private int firstLevelSceneIndex = 1;
         [SerializeField] private bool loop;
-        [SerializeField] private GameObject loadingScreen;
+        [SerializeField] private GameObject loadingScreenPrefab;
         [Header("Level Management")]
         [SerializeField] private bool autoStart = true;
         [SerializeField] private GameObject loseScreen, winScreen;
@@ -84,28 +85,38 @@ namespace FateGames.Core
         {
             Debug.Log("Initialize");
             SetTargetFrameRate(defaultTargetFrameRate);
+            if (loadingScreen) loadingScreen.SetPercent(5);
             InitializeGamePauser();
+            if (loadingScreen) loadingScreen.SetPercent(10);
             InitializeSceneManagement();
+            if (loadingScreen) loadingScreen.SetPercent(15);
             InitializeLevelManagement();
+            if (loadingScreen) loadingScreen.SetPercent(20);
             InitializeSoundManagement();
+            if (loadingScreen) loadingScreen.SetPercent(25);
             InitializeHapticManagement();
         }
         public IEnumerator InitializeThirdParty()
         {
             if (firebaseManager)
             {
+                if (loadingScreen) loadingScreen.SetPercent(50);
                 yield return firebaseManager.Initialize();
-                pushNotificationManager.Initialize();
             }
             if (applovinManager)
+            {
+                if (loadingScreen) loadingScreen.SetPercent(70);
                 yield return applovinManager.Initialize();
+            }
             if (adjustManager)
-                adjustManager.Initialize();
+                yield return adjustManager.Initialize();
             GameAnalytics.Initialize();
+            if (loadingScreen) loadingScreen.SetPercent(85);
             yield return facebookManager.Initialize();
             if (AdManager.Instance)
                 AdManager.Instance.Initialize();
             thirdPartyInitialized = true;
+            if (loadingScreen) loadingScreen.SetPercent(100);
 
         }
         private void InitializeGamePauser()
@@ -115,7 +126,7 @@ namespace FateGames.Core
 
         private void InitializeSceneManagement()
         {
-            sceneManager = new(gameState, firstLevelSceneIndex, loop, loadingScreen);
+            sceneManager = new(gameState, firstLevelSceneIndex, loop, loadingScreenPrefab);
         }
         private void InitializeLevelManagement()
         {
@@ -231,7 +242,7 @@ namespace FateGames.Core
 
         public void SetTimeScale(float timeScale)
         {
-            if(gameState.Value == GameState.PAUSED)
+            if (gameState.Value == GameState.PAUSED)
             {
                 Debug.LogError("Game is paused!");
                 return;

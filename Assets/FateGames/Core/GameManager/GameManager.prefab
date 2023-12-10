@@ -49,12 +49,14 @@ MonoBehaviour:
   dontDestroyOnLoad: 1
   gameState: {fileID: 11400000, guid: 35af722527cf21148bdd90a70a23f45e, type: 2}
   splashScreen: {fileID: 0}
+  loadingScreen: {fileID: 794140202483712576, guid: 831193ba506c21345bb4923294711758,
+    type: 3}
   defaultTargetFrameRate: 60
   autoSave: 1
-  autoSavePeriod: 60
+  autoSavePeriod: 30
   firstLevelSceneIndex: 1
   loop: 1
-  loadingScreen: {fileID: 794140202483712576, guid: 831193ba506c21345bb4923294711758,
+  loadingScreenPrefab: {fileID: 794140202483712576, guid: bc1d7a06315d5464cb1f718b57d208ff,
     type: 3}
   autoStart: 1
   loseScreen: {fileID: 5877225821496454348, guid: 32dae432a25057d41a2c84541dc21453,

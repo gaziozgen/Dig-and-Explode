@@ -10,8 +10,12 @@ using Firebase.Analytics;
 
 public class BuyingZone : FateMonoBehaviour
 {
+    [Header("Analytics")]
+    [SerializeField] bool sendEvent = false;
+    [SerializeField] string buyingZoneName;
     [Header("Properties")]
-    [SerializeField] int originalPrice = 10, price = 10;
+    [SerializeField] int originalPrice = 10;
+    [SerializeField] int price = 10;
     [SerializeField] NumberRemoteConfig originalPriceRemoteConfig;
     //[SerializeField] GameObject obj;
     [SerializeField] bool faceDown;
@@ -29,16 +33,40 @@ public class BuyingZone : FateMonoBehaviour
     [SerializeField] UnityEvent onBought;
     [SerializeField] UnityEvent onBoughtFirstTime;
     [SerializeField] Transform canvasTransform;
+    [SerializeField] LayerMask interactorLayerMask;
+    [SerializeField] BuyingZone[] requiredBuyingZones;
+    [SerializeField] bool boughtDefault = false;
+    public bool locked = false;
 
     int oldOriginalPrice = -1;
 
     public bool CanGiveMoney { get => price > 0; }
     public bool Bought { get => bought; }
     public int Price { get => price; }
+    public int OriginalPrice { get => originalPrice; }
 
-    void Awake()
+    protected void Awake()
     {
-        sphereCollider = GetComponentInChildren<SphereCollider>();
+        if (requiredBuyingZones.Length > 0) Deactivate();
+        for (int i = 0; i < requiredBuyingZones.Length; i++)
+        {
+            BuyingZone buyingZone = requiredBuyingZones[i];
+            buyingZone.onBought.AddListener(() =>
+            {
+                bool result = true;
+                for (int j = 0; j < requiredBuyingZones.Length; j++)
+                {
+                    if (!requiredBuyingZones[j].bought)
+                    {
+                        result = false;
+                        break;
+                    }
+                }
+                if (result) Activate();
+            });
+        }
+        if (!sphereCollider)
+            sphereCollider = GetComponentInChildren<SphereCollider>();
         if (faceDown)
         {
             canvasTransform.rotation = Quaternion.LookRotation(Vector3.down, Vector3.forward);
@@ -52,8 +80,17 @@ public class BuyingZone : FateMonoBehaviour
 
     private void OnEnable()
     {
+        if (bought)
+        {
+            Deactivate();
+            return;
+        }
         if (all)
             all.Add(transform);
+        if (!sphereCollider)
+            sphereCollider = GetComponentInChildren<SphereCollider>();
+        if (Physics.OverlapSphere(transform.position + sphereCollider.center, sphereCollider.radius, interactorLayerMask).Length > 0)
+            locked = true;
     }
 
     private void OnDisable()
@@ -71,7 +108,7 @@ public class BuyingZone : FateMonoBehaviour
         trans.DOScale(originalScale, scaleAnimationDuration).SetEase(Ease.OutBack);
     }
 
-    void OnValidate()
+    protected void OnValidate()
     {
         UpdateNameText();
         UpdatePriceText();
@@ -82,7 +119,7 @@ public class BuyingZone : FateMonoBehaviour
     {
         if (priceText)
         {
-            priceText.text = price == 0 ? "Free" : ("$" + price.ToString());
+            priceText.text = price == 0 ? "Free" : (price.ToString());
         }
     }
     public void UpdateNameText()
@@ -104,13 +141,25 @@ public class BuyingZone : FateMonoBehaviour
             UpdateFillImage();
         }
         if (price > originalPrice) price = originalPrice;
-        if (!CanGiveMoney) Buy(false);
+        bool priceReset = false;
+        if (boughtDefault && price > 0)
+        {
+            price = 0;
+            priceReset = true;
+        }
+        if (!CanGiveMoney || boughtDefault) Buy(boughtDefault && priceReset);
         else
         {
             UpdateNameText();
             UpdatePriceText();
             UpdateFillImage();
         }
+    }
+
+    public void BuyWithoutQuestion()
+    {
+        price = 0;
+        Buy(false);
     }
 
     public void SetParentToNull(Transform transform)
@@ -141,7 +190,7 @@ public class BuyingZone : FateMonoBehaviour
         if (boughtSet)
             boughtSet.Add(transform);
         if (onBought != null)
-            onBought.Invoke();
+            onBought?.Invoke();
         if (invokeEvent)
         {
             if (gameEvent)
@@ -149,6 +198,8 @@ public class BuyingZone : FateMonoBehaviour
             if (onBuyingZoneBoughtEvent)
                 onBuyingZoneBoughtEvent.Raise();
             onBoughtFirstTime?.Invoke();
+            /*if (sendEvent)
+                FirebaseEventManager.SendBuyingZoneEvent(buyingZoneName);*/
         }
     }
 
@@ -166,7 +217,7 @@ public class BuyingZone : FateMonoBehaviour
         price = Mathf.Clamp(price - money.value, 0, int.MaxValue);
         //price -= money.value;
 
-        money.transform.DOJump(transform.position, money.transform.position.y * 0.65f, 1, 0.2f).OnComplete(() =>
+        money.transform.DOJump(transform.position + Quaternion.Euler(0, Random.Range(0, 360f), 0) * Vector3.right * 0.2f, money.transform.position.y * 0.65f, 1, 0.2f).OnComplete(() =>
         {
             UpdatePriceText();
             UpdateFillImage();
@@ -179,6 +230,23 @@ public class BuyingZone : FateMonoBehaviour
             }
             money.Release();
         });
+    }
+
+    public void GiveMoney(int value)
+    {
+        if (!CanGiveMoney) return;
+        price = Mathf.Clamp(price - value, 0, int.MaxValue);
+        //price -= money.value;
+
+        UpdatePriceText();
+        UpdateFillImage();
+        if (price <= 0)
+        {
+            if (!bought)
+            {
+                Buy();
+            }
+        }
     }
 
 }

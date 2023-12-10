@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 public class DiggerMachine : MonoBehaviour
 {
-    [SerializeField] float minePassRate = 0.5f;
+    [SerializeField] float orePerMine = 5;
     [SerializeField] Transform useTransform;
     [SerializeField] UnityEvent UseMachine;
     [SerializeField] GameObject[] minePrefabs;
@@ -17,6 +17,7 @@ public class DiggerMachine : MonoBehaviour
     static DiggerMachine instance = null;
     public static DiggerMachine Instance => instance;
 
+    List<int> mineTypes = new();
     ItemPile<Mine> pile;
     List<FateObjectPool<Mine>> minePools = new();
     List<float> mineCounts = new();
@@ -34,6 +35,17 @@ public class DiggerMachine : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        for (int i = 0; i < mineTypes.Count; i++) AddMine(mineTypes[i], (int)orePerMine, false);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F)) AddMine(0, 5);
+        if (Input.GetKeyDown(KeyCode.M)) MoneyUI.Instance.AddMoney(100);
+    }
+
     public void Use(Transform player)
     {
         UseMachine.Invoke();
@@ -41,12 +53,14 @@ public class DiggerMachine : MonoBehaviour
         player.transform.forward = useTransform.forward;
     }
 
-    public void AddOre(int type, int value)
+    public void AddMine(int type, int value, bool updateTypesList = true)
     {
-        mineCounts[type] += minePassRate * value;
-        while (mineCounts[type] > 1)
+        if (type == -1) return;
+        mineCounts[type] += value / orePerMine;
+        while (mineCounts[type] >= 1)
         {
             mineCounts[type] -= 1;
+            if (updateTypesList) mineTypes.Add(type);
             Place(minePools[type].Get());
         }
     }
@@ -65,5 +79,15 @@ public class DiggerMachine : MonoBehaviour
     public int MineCount()
     {
         return pile.Count;
+    }
+
+    public void DequeueTypeList()
+    {
+        mineTypes.RemoveAt(0);
+    }
+
+    public Mine GetMineForSellPoint(int type)
+    {
+        return minePools[type].Get();
     }
 }

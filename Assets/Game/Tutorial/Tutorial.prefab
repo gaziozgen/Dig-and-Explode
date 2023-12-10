@@ -1,0 +1,92 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3898805513367029347
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3898805513367029345}
+  - component: {fileID: 3898805513367029344}
+  - component: {fileID: 7483963970432241992}
+  m_Layer: 0
+  m_Name: Tutorial
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3898805513367029345
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3898805513367029347}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3898805513367029344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3898805513367029347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d3ab4b0612de904ca07b9107b94c9e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sendEvent: 1
+  taskName: 
+  tutorialData: {fileID: 0}
+  root: {fileID: 0}
+  partialTutorial: 0
+  resetQuantityOnStart: 0
+  showArrow: 1
+  bypass: 0
+  infoText: Info text
+  iconSprite: {fileID: 21300000, guid: f588d4e07b589b24b9d359f773d9f133, type: 3}
+  target: {fileID: 0}
+  targets: []
+  transitionDuration: 1
+  waitDuration: 1
+  moveCamera: 1
+  offsetY: 0
+  requirements: []
+  nextTutorial: {fileID: 0}
+  allTutorialsCompleted: {fileID: 11400000, guid: 4ddd85cfc8fa94448bf6fd0cdf9d0935,
+    type: 2}
+  quantityIncreaseEvent: {fileID: 0}
+  currentQuantity: 0
+  maxQuantity: 1
+  prizeGem: 0
+  tutorialCompletedGameEvent: {fileID: 11400000, guid: fc69278733dbc204f88c1581de74daa4,
+    type: 2}
+  delay: 0
+--- !u!114 &7483963970432241992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3898805513367029347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2311f7235fe60a241baf29bbb8d84592, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 3898805513367029344}
+  fieldKeys:
+  - fieldName: currentQuantity
+    key: 
+  - fieldName: isStartEventSent
+    key: 

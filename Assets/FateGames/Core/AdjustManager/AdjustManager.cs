@@ -3,15 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName ="Fate/Adjust Manager")]
+[CreateAssetMenu(menuName = "Fate/Adjust Manager")]
 public class AdjustManager : ScriptableObject
 {
     [SerializeField] string appTokenAND = "";
     [SerializeField] string appTokenIOS = "";
     [SerializeField] string appOpenTokenAND = "";
     [SerializeField] string appOpenTokenIOS = "";
-    public void Initialize()
+    public IEnumerator Initialize()
     {
+        bool initialized = false;
 #if UNITY_IOS
         string appToken = appTokenIOS;
 #else
@@ -23,9 +24,22 @@ public class AdjustManager : ScriptableObject
         AdjustEnvironment environment = AdjustEnvironment.Production;
 #endif
         AdjustConfig adjustConfig = new AdjustConfig(appToken, environment);
+        adjustConfig.setSessionSuccessDelegate((sessionSuccessDelegate) =>
+        {
+            Debug.Log("adid: " + sessionSuccessDelegate.Adid);
+            initialized = true;
+        });
+        adjustConfig.setSessionFailureDelegate((sessionFailureData) =>
+        {
+            Debug.Log("adid: " + sessionFailureData.Adid);
+            initialized = true;
+        });
+        float startTime = Time.time;
         Adjust.start(adjustConfig);
-
         SendAppOpenEvent();
+        yield return new WaitUntil(() => initialized || Time.time >= startTime + 2);
+        if (!initialized)
+            Debug.LogWarning("Adjust first install callback does not work");
     }
 
     public void SendAppOpenEvent()

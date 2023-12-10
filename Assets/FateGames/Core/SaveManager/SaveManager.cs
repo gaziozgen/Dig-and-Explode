@@ -227,18 +227,24 @@ public class SaveManager : Singleton<SaveManager>
         }
         return false;
     }
-    public List<int> GetIntList(string key, List<int> defaultValue)
+    public List<int> GetIntList(string key)
     {
         if (!isLoaded)
         {
-            Debug.Log("Not loaded!");
+            Debug.LogError("Not loaded!");
             Load();
         }
-        List<int> value = defaultValue;
+        List<int> value;
         if (data.intListFields.ContainsKey(key))
             value = data.intListFields[key];
+        else
+        {
+            value = new();
+            data.intListFields.Add(key, value);
+        }
         return value;
     }
+
 
     public void SetIntList(string key, List<int> value)
     {
@@ -271,18 +277,24 @@ public class SaveManager : Singleton<SaveManager>
         }
         return false;
     }
-    public List<float> GetFloatList(string key, List<float> defaultValue)
+    public List<float> GetFloatList(string key)
     {
         if (!isLoaded)
         {
-            Debug.Log("Not loaded!");
+            Debug.LogError("Not loaded!");
             Load();
         }
-        List<float> value = defaultValue;
+        List<float> value;
         if (data.floatListFields.ContainsKey(key))
             value = data.floatListFields[key];
+        else
+        {
+            value = new();
+            data.floatListFields.Add(key, value);
+        }
         return value;
     }
+
 
     public void SetFloatList(string key, List<float> value)
     {
@@ -315,18 +327,24 @@ public class SaveManager : Singleton<SaveManager>
         }
         return false;
     }
-    public List<string> GetStringList(string key, List<string> defaultValue)
+    public List<string> GetStringList(string key)
     {
         if (!isLoaded)
         {
-            Debug.Log("Not loaded!");
+            Debug.LogError("Not loaded!");
             Load();
         }
-        List<string> value = defaultValue;
+        List<string> value;
         if (data.stringListFields.ContainsKey(key))
             value = data.stringListFields[key];
+        else
+        {
+            value = new();
+            data.stringListFields.Add(key, value);
+        }
         return value;
     }
+
 
     public void SetStringList(string key, List<string> value)
     {
@@ -359,16 +377,21 @@ public class SaveManager : Singleton<SaveManager>
         }
         return false;
     }
-    public List<bool> GetBoolList(string key, List<bool> defaultValue)
+    public List<bool> GetBoolList(string key)
     {
         if (!isLoaded)
         {
-            Debug.Log("Not loaded!");
+            Debug.LogError("Not loaded!");
             Load();
         }
-        List<bool> value = defaultValue;
+        List<bool> value;
         if (data.boolListFields.ContainsKey(key))
             value = data.boolListFields[key];
+        else
+        {
+            value = new();
+            data.boolListFields.Add(key, value);
+        }
         return value;
     }
 
@@ -399,7 +422,6 @@ public class SaveManager : Singleton<SaveManager>
 #if UNITY_EDITOR
     private void OnApplicationQuit()
     {
-
         Save();
     }
 #endif
@@ -516,6 +538,19 @@ public class SaveManager : Singleton<SaveManager>
         }
     }
 
+    static List<string> usedKeys = new();
+    [MenuItem("Fate/Generate Saveable Field Keys")]
+    private static void GenerateKeys()
+    {
+        usedKeys.Clear();
+        Saveable[] saveables = FindObjectsOfType<Saveable>(true);
+        foreach (Saveable saveable in saveables)
+        {
+            saveable.GenerateKeys(usedKeys);
+        }
+    }
+
+
 #endif
 }
 [System.Serializable]
@@ -534,8 +569,8 @@ public class SaveData
 [System.Serializable]
 public class FateFieldKey
 {
-    public string fieldName;
-    public string key;
+    [SerializeField] public string fieldName;
+    [SerializeField] public string key;
 
     public FateFieldKey(string fieldName, string key)
     {

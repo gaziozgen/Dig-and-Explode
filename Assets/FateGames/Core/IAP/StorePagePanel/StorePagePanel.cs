@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Purchasing;
 using UnityEngine.UI;
 
 public class StorePagePanel : MonoBehaviour
@@ -22,10 +21,10 @@ public class StorePagePanel : MonoBehaviour
         for (int i = 0; i < storePageProducts.Length; i++)
         {
             StorePageProduct storePageProduct = storePageProducts[i];
-            Product product = StorePage.Instance.GetProduct(storePageProduct.id);
+            Purchases.StoreProduct product = StorePage.Instance.GetProduct(storePageProduct.id);
             if (product == null) continue;
             storePageProduct.button.onClick.AddListener(() => StorePage.Instance.HandlePurchase(storePageProduct.id));
-            storePageProduct.priceText.text = $"{product.metadata.isoCurrencyCode} {product.metadata.localizedPrice}";
+            storePageProduct.priceText.text = $"{product.CurrencyCode} {product.Price}";
         }
     }
 

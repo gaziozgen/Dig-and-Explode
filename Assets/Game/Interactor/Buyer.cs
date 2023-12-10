@@ -12,13 +12,13 @@ public class Buyer : FateMonoBehaviour
     [SerializeField] SoundEntity moneyPushSound;
     [SerializeField] SoundEntity buyingSound;
     [SerializeField] UnityEvent onHiringZoneInteracted, onPlayerZoneInteracted, onPlayerZoneLeaved;
-    Interactor.Interaction upgradeZoneInteraction, interactAreaInteraction, offerZoneInteraction;
+    Interactor.Interaction upgradeZoneInteraction, interactAreaInteraction, offerZoneInteraction, buyingZoneInteraction;
     Interactor interactor;
 
     private void Awake()
     {
         interactor = GetComponent<Interactor>();
-        Interactor.Interaction buyingZoneInteraction = new("Buying Zone", InteractWithBuyingZone, () => MoneyUI.Money > 0, 0.5f, false, false);
+        buyingZoneInteraction = new("Buying Zone", InteractWithBuyingZone, () => MoneyUI.Money > 0, 0.5f, true, false);
         interactor.AddInteraction(buyingZoneInteraction);
         interactAreaInteraction = new("Level Portal", InteractWithLevelPortal, () => true, 0.5f, true, false);
         interactor.AddInteraction(interactAreaInteraction);
@@ -30,6 +30,12 @@ public class Buyer : FateMonoBehaviour
     {
         BuyingZone buyingZone = obj.GetComponent<BuyingZone>();
         if (!buyingZone) yield break;
+        if (buyingZone.locked)
+        {
+            buyingZoneInteraction.onUnlock.RemoveAllListeners();
+            buyingZoneInteraction.onUnlock.AddListener(() => { buyingZone.locked = false; buyingZoneInteraction.onUnlock.RemoveAllListeners(); });
+            yield break;
+        }
         int count = 0;
         while (MoneyUI.Money > 0 && buyingZone.CanGiveMoney)
         {

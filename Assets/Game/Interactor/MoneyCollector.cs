@@ -11,9 +11,6 @@ public class MoneyCollector : FateMonoBehaviour
 {
     [SerializeField] SoundEntity moneyPushSound;
     [SerializeField] UnityEvent onMoneyCollectingZoneInteracted, onPoolPartyZoneInteracted;
-
-
-
     Interactor interactor;
 
     private void Awake()

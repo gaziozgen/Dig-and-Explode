@@ -32,5 +32,6 @@ public class FirebaseManager : ScriptableObject
         });
         yield return new WaitUntil(() => done);
         yield return remoteConfigManager.Initialize();
+        new PushNotificationManager().Initialize();
     }
 }

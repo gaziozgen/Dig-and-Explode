@@ -6,6 +6,7 @@ using FateGames.Core;
 using UnityEngine.Events;
 using GameAnalyticsSDK;
 using Firebase.Analytics;
+using TMPro;
 
 public class UpgradeCard : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class UpgradeCard : MonoBehaviour
     [SerializeField] Image iconImage;
     [SerializeField] Button buyButton, rewardedButton, buyWithGemButton;
     [SerializeField] Slider levelSlider;
+    [SerializeField] TextMeshProUGUI levelText;
     [SerializeField] string whose = "";
     [SerializeField] UnityEvent onBuy;
     [Header("Visual Attributes")]
@@ -22,6 +24,7 @@ public class UpgradeCard : MonoBehaviour
     [SerializeField] int[] prices;
     [SerializeField] IntReference level;
     [SerializeField] int maxLevel = 5;
+    [SerializeField] SoundEntity sound;
     MoneyButtonState moneyButtonState = MoneyButtonState.NONE;
     GemButtonState gemButtonState = GemButtonState.NONE;
     private enum MoneyButtonState { NONE, MAX, AFFORDABLE, NOT_AFFORDABLE }
@@ -32,7 +35,6 @@ public class UpgradeCard : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log("okudu");
         level.Variable.OnValueChanged.AddListener((int before, int after) => UpdateCard());
     }
 
@@ -139,6 +141,7 @@ public class UpgradeCard : MonoBehaviour
     public void UpdateSlider()
     {
         levelSlider.value = (float)level.Value / maxLevel;
+        levelText.text = "Level " + (level.Value + 1).ToString();
     }
     public void UpdateCard()
     {
@@ -154,6 +157,7 @@ public class UpgradeCard : MonoBehaviour
         int price = this.price;
         MoneyUI.Instance.SpendMoney(price);
         Upgrade();
+        AdManager.Instance.ShowInterstitial();
     }
 
     public void BuyWithGem()
@@ -167,7 +171,7 @@ public class UpgradeCard : MonoBehaviour
     public void Rewarded()
     {
         if (level.Value >= maxLevel) return;
-        AdManager.Instance.ShowRewardedAd($"employeeUpgrade_{whose.ToLower()}_{name.ToLower()}",() => { }, () =>
+        AdManager.Instance.ShowRewardedAd($"upgrade_{name.ToLower()}", () => { }, () =>
         {
             Upgrade();
         });
@@ -176,6 +180,9 @@ public class UpgradeCard : MonoBehaviour
     public void Upgrade()
     {
         if (level.Value >= maxLevel) return;
+        GameManager.Instance.PlayHaptic();
+        GameManager.Instance.PlaySoundOneShot(sound);
+        FirebaseEventManager.SendUpgradeEvent(name + "_" + level);
         onBuy.Invoke();
         UpdateCard();
     }

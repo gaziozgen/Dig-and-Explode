@@ -1,4 +1,3 @@
-using FateGames.Core;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +5,7 @@ using UnityEngine.Events;
 
 [DisallowMultipleComponent]
 [RequireComponent(typeof(CapsuleTriggerChecker))]
-public class Interactor : FateMonoBehaviour
+public class Interactor : MonoBehaviour
 {
     [SerializeField] float interactionInterval = 0.15f;
     List<Interaction> interactions = new();
@@ -47,6 +46,8 @@ public class Interactor : FateMonoBehaviour
         currentInteractions.Remove(interaction);
         StopCoroutine(interaction.coroutine);
         interaction.coroutine = null;
+        interaction.isProgressing = false;
+        interaction.onCancel?.Invoke();
     }
     private void CheckInteraction()
     {
@@ -132,6 +133,9 @@ public class Interactor : FateMonoBehaviour
         if (locked || (moving && !interaction.interactWhenMoving) || interaction.locked || !interaction.enterCondition()) return false;
         IEnumerator Routine()
         {
+            interaction.onStart?.Invoke();
+            interaction.isProgressing = true;
+            interaction.startTime = Time.time;
             if (interaction.duration > 0)
                 yield return new WaitForSeconds(interaction.duration);
             if (interaction.lockOnEnter)
@@ -145,6 +149,7 @@ public class Interactor : FateMonoBehaviour
             }
             currentInteractions.Remove(interaction);
             interaction.coroutine = null;
+            interaction.isProgressing = false;
         }
         coroutine = StartCoroutine(Routine());
         return true;
@@ -162,6 +167,10 @@ public class Interactor : FateMonoBehaviour
         public Collider collider;
         public bool interactWhenMoving;
         public UnityEvent onUnlock = new();
+        public float startTime = float.MinValue;
+        public bool isProgressing = false;
+        public System.Action onStart;
+        public System.Action onCancel;
 
         public Interaction(string tag, InteractionRoutine routine, InteractionEnterCondition enterCondition, float duration, bool lockOnEnter, bool interactWhenMoving)
         {
@@ -181,6 +190,4 @@ public class Interactor : FateMonoBehaviour
                 onUnlock.Invoke();
         }
     }
-
-
 }

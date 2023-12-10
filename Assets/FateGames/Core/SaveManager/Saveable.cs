@@ -9,37 +9,19 @@ using UnityEngine.Events;
 using UnityEditor.SceneManagement;
 #endif
 
-[ExecuteInEditMode]
+
 public class Saveable : MonoBehaviour
 {
     public UnityEngine.Object target;
     [SerializeField] List<FateFieldKey> fieldKeys = new();
-    [SerializeField] bool isAwaken = false;
     FieldInfo[] fieldInfo = null;
     void Awake()
     {
-        if (Application.isEditor && !Application.isPlaying)
+        if (fieldKeys.Count > 0)
         {
-            if (!isAwaken)
-            {
-                isAwaken = true;
-                for (int i = 0; i < fieldKeys.Count; i++)
-                {
-                    fieldKeys[i].key = "";
-                }
-                OnValidate();
-            }
-
+            SaveManager.Instance.Register(this);
+            LoadFields();
         }
-        else
-        {
-            if (fieldKeys.Count > 0)
-            {
-                SaveManager.Instance.Register(this);
-                LoadFields();
-            }
-        }
-
     }
 
     public bool IsFieldActive(string fieldName)
@@ -178,7 +160,15 @@ public class Saveable : MonoBehaviour
     List<string> keys = new();
     List<string> fieldNames = new();
 #endif
-    protected virtual void OnValidate()
+
+    private string GenerateKey()
+    {
+        string key = Guid.NewGuid().ToString();
+        Debug.Log($"New key generated: {key}", this);
+        return key;
+    }
+
+    public void GenerateKeys(List<string> usedKeys)
     {
 #if UNITY_EDITOR
         keys.Clear();
@@ -188,48 +178,46 @@ public class Saveable : MonoBehaviour
         for (int i = 0; i < fieldKeys.Count; i++)
         {
             FateFieldKey fieldKey = fieldKeys[i];
+            bool a = fieldKey.key == null;
+            bool b = fieldKey.key == "";
+            bool c = keys.Contains(fieldKey.key);
             if (fieldKey.fieldName != null && fieldKey.fieldName != "" && !fieldNames.Contains(fieldKey.fieldName))
             {
-                Debug.Log("fieldKey.fieldName: " + fieldKey.fieldName, this);
-                Debug.Log("fieldNames.Contains(fieldKey.fieldName): " + fieldNames.Contains(fieldKey.fieldName), this);
+                //Debug.Log("fieldKey.fieldName: " + fieldKey.fieldName, this);
+                //Debug.Log("fieldNames.Contains(fieldKey.fieldName): " + fieldNames.Contains(fieldKey.fieldName), this);
                 fieldNames.Add(fieldKey.fieldName);
             }
             else if (fieldNames.Contains(fieldKey.fieldName))
             {
-                Debug.Log("fieldNames.Contains(fieldKey.fieldName): " + fieldNames.Contains(fieldKey.fieldName), this);
+                //Debug.Log("fieldNames.Contains(fieldKey.fieldName): " + fieldNames.Contains(fieldKey.fieldName), this);
                 fieldKey.fieldName = "";
             }
-            if ((fieldKey.key == null || fieldKey.key == "" || keys.Contains(fieldKey.key)) && !inPrefabMode)
+            if ((a || b || usedKeys.Contains(fieldKey.key) || c) && !inPrefabMode)
             {
-
-                Debug.Log("fieldKey.key: " + fieldKey.key, this);
-                Debug.Log("keys.Contains(fieldKey.key): " + keys.Contains(fieldKey.key), this);
+                /*Debug.Log("contains " + a, this);
+                Debug.Log("fieldKey.key == null " + b, this);
+                Debug.Log("fieldKey.key == \"\" " + c, this);
+                Debug.Log("s" + (a || b || c), this);
+                Debug.Log("overall " + ((a || b || c) && !inPrefabMode), this);*/
+                //Debug.Log("fieldKey.key: " + fieldKey.key, this);
+                //Debug.Log("keys.Contains(fieldKey.key): " + keys.Contains(fieldKey.key), this);
 
                 fieldKey.key = GenerateKey();
-
+                EditorUtility.SetDirty(this);
             }
             if (inPrefabMode)
             {
-                Debug.Log("inprefabmode", this);
                 fieldKey.key = "";
             }
             else
             {
-                Debug.Log("not in prefabmode", this);
+                //Debug.Log("not in prefabmode", this);
                 keys.Add(fieldKey.key);
+                usedKeys.Add(fieldKey.key);
             }
         }
 #endif
     }
-
-    private string GenerateKey()
-    {
-        string key = Guid.NewGuid().ToString();
-        Debug.Log($"???????????????????????????????????????????????????????????New key generated: {key}", this);
-        return key;
-    }
-
-
 
 }
 
@@ -239,7 +227,8 @@ public class SaveableEditor : Editor
 {
     SerializedProperty saveTarget;
     Saveable saveable = null;
-    private void OnEnable()
+
+    private void Awake()
     {
         saveable = target as Saveable;
         saveTarget = serializedObject.FindProperty("target");
@@ -269,7 +258,7 @@ public class SaveableEditor : Editor
             }
 
         }
-
+        serializedObject.ApplyModifiedProperties();
     }
 }
 #endif

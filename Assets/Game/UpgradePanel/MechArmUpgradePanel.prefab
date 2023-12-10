@@ -24,10 +24,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: a91ee1beba9ca524eb78b8d34fe73f01,
         type: 2}
+    - target: {fileID: 756070015181826844, guid: 93b6e933290ee094aa9156ddfa5029c5,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 354baaad23a0b114b8b92dff755a4b8c,
+        type: 3}
     - target: {fileID: 856638946183989185, guid: 93b6e933290ee094aa9156ddfa5029c5,
         type: 3}
       propertyPath: m_text
-      value: Carry Count
+      value: Hold Capacity
       objectReference: {fileID: 0}
     - target: {fileID: 1006725575900738530, guid: 93b6e933290ee094aa9156ddfa5029c5,
         type: 3}
@@ -48,6 +54,58 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2279819101963652092, guid: 93b6e933290ee094aa9156ddfa5029c5,
+        type: 3}
+      propertyPath: icon
+      value: 
+      objectReference: {fileID: 21300000, guid: 354baaad23a0b114b8b92dff755a4b8c,
+        type: 3}
+    - target: {fileID: 2279819101963652092, guid: 93b6e933290ee094aa9156ddfa5029c5,
+        type: 3}
+      propertyPath: name
+      value: Belt Speed
+      objectReference: {fileID: 0}
+    - target: {fileID: 2279819101963652092, guid: 93b6e933290ee094aa9156ddfa5029c5,
+        type: 3}
+      propertyPath: level.Variable
+      value: 
+      objectReference: {fileID: 11400000, guid: a49fb2d5b1411cd49acc7e707749abe0,
+        type: 2}
+    - target: {fileID: 2279819101963652092, guid: 93b6e933290ee094aa9156ddfa5029c5,
+        type: 3}
+      propertyPath: level.UseConstant
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2279819101963652092, guid: 93b6e933290ee094aa9156ddfa5029c5,
+        type: 3}
+      propertyPath: prices.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2279819101963652092, guid: 93b6e933290ee094aa9156ddfa5029c5,
+        type: 3}
+      propertyPath: prices.Array.data[0]
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2279819101963652092, guid: 93b6e933290ee094aa9156ddfa5029c5,
+        type: 3}
+      propertyPath: prices.Array.data[1]
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2279819101963652092, guid: 93b6e933290ee094aa9156ddfa5029c5,
+        type: 3}
+      propertyPath: prices.Array.data[2]
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 2279819101963652092, guid: 93b6e933290ee094aa9156ddfa5029c5,
+        type: 3}
+      propertyPath: prices.Array.data[3]
+      value: 34
+      objectReference: {fileID: 0}
+    - target: {fileID: 2279819101963652092, guid: 93b6e933290ee094aa9156ddfa5029c5,
+        type: 3}
+      propertyPath: prices.Array.data[4]
+      value: 51
       objectReference: {fileID: 0}
     - target: {fileID: 2420902472167480203, guid: 93b6e933290ee094aa9156ddfa5029c5,
         type: 3}
@@ -72,22 +130,23 @@ PrefabInstance:
     - target: {fileID: 2847184252976148392, guid: 93b6e933290ee094aa9156ddfa5029c5,
         type: 3}
       propertyPath: m_text
-      value: Speed
+      value: Arm Speed
       objectReference: {fileID: 0}
     - target: {fileID: 3088973177194738616, guid: 93b6e933290ee094aa9156ddfa5029c5,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4365946859373167001, guid: 93b6e933290ee094aa9156ddfa5029c5,
-        type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4678103024798869528, guid: 93b6e933290ee094aa9156ddfa5029c5,
         type: 3}
+      propertyPath: icon
+      value: 
+      objectReference: {fileID: 21300000, guid: 4606de828de82a2408f9b136f4c0bea4,
+        type: 3}
+    - target: {fileID: 4678103024798869528, guid: 93b6e933290ee094aa9156ddfa5029c5,
+        type: 3}
       propertyPath: name
-      value: Speed
+      value: Arm Speed
       objectReference: {fileID: 0}
     - target: {fileID: 4678103024798869528, guid: 93b6e933290ee094aa9156ddfa5029c5,
         type: 3}
@@ -108,7 +167,27 @@ PrefabInstance:
     - target: {fileID: 4678103024798869528, guid: 93b6e933290ee094aa9156ddfa5029c5,
         type: 3}
       propertyPath: prices.Array.data[0]
-      value: 0
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4678103024798869528, guid: 93b6e933290ee094aa9156ddfa5029c5,
+        type: 3}
+      propertyPath: prices.Array.data[1]
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4678103024798869528, guid: 93b6e933290ee094aa9156ddfa5029c5,
+        type: 3}
+      propertyPath: prices.Array.data[2]
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 4678103024798869528, guid: 93b6e933290ee094aa9156ddfa5029c5,
+        type: 3}
+      propertyPath: prices.Array.data[3]
+      value: 34
+      objectReference: {fileID: 0}
+    - target: {fileID: 4678103024798869528, guid: 93b6e933290ee094aa9156ddfa5029c5,
+        type: 3}
+      propertyPath: prices.Array.data[4]
+      value: 51
       objectReference: {fileID: 0}
     - target: {fileID: 4678103024798869528, guid: 93b6e933290ee094aa9156ddfa5029c5,
         type: 3}
@@ -120,6 +199,12 @@ PrefabInstance:
       propertyPath: onBuy.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6140208541775694072, guid: 93b6e933290ee094aa9156ddfa5029c5,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 4606de828de82a2408f9b136f4c0bea4,
+        type: 3}
     - target: {fileID: 6482399880759425077, guid: 93b6e933290ee094aa9156ddfa5029c5,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -127,8 +212,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7821533749864317041, guid: 93b6e933290ee094aa9156ddfa5029c5,
         type: 3}
+      propertyPath: icon
+      value: 
+      objectReference: {fileID: 21300000, guid: 3e6dbd87a9485d144b30f06743fde24f,
+        type: 3}
+    - target: {fileID: 7821533749864317041, guid: 93b6e933290ee094aa9156ddfa5029c5,
+        type: 3}
       propertyPath: name
-      value: Carry Count
+      value: Hold Capacity
       objectReference: {fileID: 0}
     - target: {fileID: 7821533749864317041, guid: 93b6e933290ee094aa9156ddfa5029c5,
         type: 3}
@@ -149,23 +240,85 @@ PrefabInstance:
     - target: {fileID: 7821533749864317041, guid: 93b6e933290ee094aa9156ddfa5029c5,
         type: 3}
       propertyPath: prices.Array.data[0]
-      value: 0
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7821533749864317041, guid: 93b6e933290ee094aa9156ddfa5029c5,
+        type: 3}
+      propertyPath: prices.Array.data[1]
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7821533749864317041, guid: 93b6e933290ee094aa9156ddfa5029c5,
+        type: 3}
+      propertyPath: prices.Array.data[2]
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 7821533749864317041, guid: 93b6e933290ee094aa9156ddfa5029c5,
+        type: 3}
+      propertyPath: prices.Array.data[3]
+      value: 34
+      objectReference: {fileID: 0}
+    - target: {fileID: 7821533749864317041, guid: 93b6e933290ee094aa9156ddfa5029c5,
+        type: 3}
+      propertyPath: prices.Array.data[4]
+      value: 51
       objectReference: {fileID: 0}
     - target: {fileID: 7821533749864317041, guid: 93b6e933290ee094aa9156ddfa5029c5,
         type: 3}
       propertyPath: onBuy.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7821533749864317041, guid: 93b6e933290ee094aa9156ddfa5029c5,
+        type: 3}
+      propertyPath: onBuy.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7821533749864317041, guid: 93b6e933290ee094aa9156ddfa5029c5,
         type: 3}
+      propertyPath: onBuy.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 11400000, guid: d4a7f470fedffaa41960008bf8fa518d,
+        type: 2}
+    - target: {fileID: 7821533749864317041, guid: 93b6e933290ee094aa9156ddfa5029c5,
+        type: 3}
       propertyPath: onBuy.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7821533749864317041, guid: 93b6e933290ee094aa9156ddfa5029c5,
+        type: 3}
+      propertyPath: onBuy.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7821533749864317041, guid: 93b6e933290ee094aa9156ddfa5029c5,
+        type: 3}
+      propertyPath: onBuy.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: Raise
+      objectReference: {fileID: 0}
+    - target: {fileID: 7821533749864317041, guid: 93b6e933290ee094aa9156ddfa5029c5,
+        type: 3}
+      propertyPath: onBuy.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: FateGames.Core.GameEvent, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7821533749864317041, guid: 93b6e933290ee094aa9156ddfa5029c5,
+        type: 3}
+      propertyPath: onBuy.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8473032538573918300, guid: 93b6e933290ee094aa9156ddfa5029c5,
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8704125954862746700, guid: 93b6e933290ee094aa9156ddfa5029c5,
+        type: 3}
+      propertyPath: m_text
+      value: Belt Speed
+      objectReference: {fileID: 0}
+    - target: {fileID: 8743238716373950609, guid: 93b6e933290ee094aa9156ddfa5029c5,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 3e6dbd87a9485d144b30f06743fde24f,
+        type: 3}
     - target: {fileID: 8890857235803468326, guid: 93b6e933290ee094aa9156ddfa5029c5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -216,25 +369,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8999959736524979551, guid: 93b6e933290ee094aa9156ddfa5029c5,
+        type: 3}
+      propertyPath: m_text
+      value: Arm & Belt
+      objectReference: {fileID: 0}
     - target: {fileID: 9138009761194244207, guid: 93b6e933290ee094aa9156ddfa5029c5,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9138009761194244207, guid: 93b6e933290ee094aa9156ddfa5029c5,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9138009761194244207, guid: 93b6e933290ee094aa9156ddfa5029c5,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 830
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9138009761194244207, guid: 93b6e933290ee094aa9156ddfa5029c5,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -50
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

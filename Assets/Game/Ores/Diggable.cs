@@ -8,7 +8,7 @@ public interface IDiggable
 
     public bool IsDug();
 
-    public void GetDug();
+    public void GetDug(bool checkDug = true);
 
     public float Power();
 }

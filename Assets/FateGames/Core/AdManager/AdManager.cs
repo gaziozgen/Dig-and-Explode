@@ -69,6 +69,13 @@ public class AdManager : Singleton<AdManager>
     {
         Release();
     }
+
+    public void ToggleAds()
+    {
+        if (disabled) EnableAds();
+        else DisableAds();
+    }
+
     public void DisableAds()
     {
         Debug.Log("DisableAds");
@@ -136,8 +143,9 @@ public class AdManager : Singleton<AdManager>
 
     public void ShowInterstitial()
     {
+        Debug.Log("ShowInterstitial 1");
         if (Disabled) return;
-        Debug.Log("ShowInterstitial");
+        Debug.Log("ShowInterstitial 2");
         if (MaxSdk.IsInterstitialReady(InterstitialAdUnitId) && canShowInterstitial)
         {
             Debug.Log("Showing");

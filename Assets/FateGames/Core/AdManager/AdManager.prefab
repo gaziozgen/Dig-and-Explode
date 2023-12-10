@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4846843889602904216}
   - component: {fileID: 7194684560470095707}
+  - component: {fileID: 6874575387577478646}
   m_Layer: 0
   m_Name: AdManager
   m_TagString: Untagged
@@ -61,3 +62,20 @@ MonoBehaviour:
   firstInterstitialTimeConfig: {fileID: 11400000, guid: a46708a4fd21f3b42b0f076a58fbef9f,
     type: 2}
   graceTimeConfig: {fileID: 11400000, guid: 019998da612111e48b036780cb8c8a48, type: 2}
+--- !u!114 &6874575387577478646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1157414411331355610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e72ded4bbe29d9648a4cace73085bbf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEventTuple:
+    events: []
+    response:
+      m_PersistentCalls:
+        m_Calls: []

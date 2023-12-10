@@ -1,10 +1,10 @@
+using DG.Tweening;
 using FateGames.Core;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[Serializable]
 public class ItemPile<T> where T : FateMonoBehaviour
 {
     Transform pileCenter;
@@ -15,6 +15,7 @@ public class ItemPile<T> where T : FateMonoBehaviour
     int floorCapacity;
     Vector3 correction;
     bool defaultDirection;
+    float transitionDuration = 0.2f;
 
     public int Count => items.Count;
 
@@ -30,7 +31,7 @@ public class ItemPile<T> where T : FateMonoBehaviour
         correction += -(dimensions.y - 1) * itemSize.z / 2 * pileCenter.forward;
     }
 
-    public void AddItem(T item)
+    public void AddItem(T item, bool withTween = false)
     {
         
         int itemsOnFloor = items.Count % floorCapacity;
@@ -39,8 +40,16 @@ public class ItemPile<T> where T : FateMonoBehaviour
         pos += itemsOnFloor / (int)dimensions.x * itemSize.z * pileCenter.forward;
         pos += itemsOnFloor % (int)dimensions.x * itemSize.x * (defaultDirection ? -pileCenter.right : pileCenter.right);
 
-        item.transform.position = pos + pileCenter.position + correction;
-        item.transform.forward = pileCenter.forward;
+        if (withTween)
+        {
+            item.transform.DOMove(pos + pileCenter.position + correction, transitionDuration);
+            item.transform.DORotate(pileCenter.forward, transitionDuration);
+        }
+        else
+        {
+            item.transform.position = pos + pileCenter.position + correction;
+            item.transform.forward = pileCenter.forward;
+        }
         items.Add(item);
     }
 
@@ -48,6 +57,7 @@ public class ItemPile<T> where T : FateMonoBehaviour
     {
         T item = items[items.Count - 1];
         items.RemoveAt(items.Count - 1);
+        item.transform.DOKill();
         return item;
     }
 

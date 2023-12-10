@@ -14,6 +14,7 @@ public class MoneyUI : FateMonoBehaviour
     [SerializeField] private RectTransform canvas;
     [SerializeField] private GameObject flyingMoneyPrefab = null;
     [SerializeField] private GameObject levitatingMoney = null;
+    [SerializeField] private GameObject money3dPrefab;
     [SerializeField] private GameEvent onMoneyChanged = null;
     [SerializeField] private SoundEntity burstSound = null;
     public UnityEvent<int, int> OnMoneyAdded = new();
@@ -48,9 +49,9 @@ public class MoneyUI : FateMonoBehaviour
         for (int i = 0; i < amount; i++)
         {
             OnMoneyIncremented.Invoke();
-
         }
         UpdateUI();
+        onMoneyChanged.Raise();
     }
 
     public void SpendMoney(int amount)
@@ -60,6 +61,7 @@ public class MoneyUI : FateMonoBehaviour
         OnMoneySpent.Invoke(previous, SaveManager.Money);
 
         UpdateUI();
+        onMoneyChanged.Raise();
     }
 
     public void DirectFlyingMoney(int amount, float startSize, Vector2 spawnPosition)

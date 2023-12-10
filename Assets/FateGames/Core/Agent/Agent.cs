@@ -9,17 +9,25 @@ using System;
 public class Agent : FateMonoBehaviour
 {
     [SerializeField] Animator animator;
-    [SerializeField] float speed = 3.5f, angularSpeed = 360, radius = 0.5f;
+    [SerializeField] bool autoBraking = true;
+    [SerializeField] float speed = 3.5f, angularSpeed = 360, radius = 0.5f, acceleration = 8;
     [SerializeField] ObstacleAvoidanceType obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
+
+    public WaitUntil WaitUntilReached;
+
     NavMeshAgent navMeshAgent;
     event Action OnReachedToDestination;
+
     public bool GoingToDestination { get; private set; } = false;
     Vector3 destination = Vector3.zero;
     public float Speed => navMeshAgent.speed;
 
+    public bool Reached => gameObject.activeInHierarchy && navMeshAgent.enabled && !navMeshAgent.pathPending && navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance && !navMeshAgent.hasPath && navMeshAgent.velocity.sqrMagnitude == 0f;
+
     private void Awake()
     {
         InitializeNavMeshAgent();
+        WaitUntilReached = new(() => Reached);
     }
 
     private void Start()
@@ -35,6 +43,8 @@ public class Agent : FateMonoBehaviour
         navMeshAgent.obstacleAvoidanceType = obstacleAvoidanceType;
         navMeshAgent.radius = 0.5f;
         navMeshAgent.hideFlags = HideFlags.HideInInspector;
+        navMeshAgent.acceleration = acceleration;
+        navMeshAgent.autoBraking = autoBraking;
     }
 
     public void Disable()
@@ -93,11 +103,9 @@ public class Agent : FateMonoBehaviour
         navMeshAgent.speed = speed;
     }
 
-   
-
     public void Stop()
     {
-        navMeshAgent.isStopped = true;
+        if (gameObject.activeInHierarchy) navMeshAgent.isStopped = true;
         GoingToDestination = false;
         OnReachedToDestination = () => { };
         destination = Vector3.zero;
@@ -107,7 +115,7 @@ public class Agent : FateMonoBehaviour
     void CheckReached()
     {
         if (!GoingToDestination) return;
-        if (navMeshAgent.enabled && !navMeshAgent.pathPending && navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance && !navMeshAgent.hasPath && navMeshAgent.velocity.sqrMagnitude == 0f)
+        if (Reached)
         {
             OnReachedToDestination();
             Stop();

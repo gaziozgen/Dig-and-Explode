@@ -9,6 +9,7 @@ public class Vacuum : Tool
     [SerializeField] float rotateSpeed = 5f;
     [SerializeField] DiggerMachine diggerMachine;
     [SerializeField] ToolController toolController;
+    [SerializeField] GameEvent onVacuumed;
     [SerializeField] Rope rope;
     [SerializeField] ParticleSystem vacuumEffect;
     [SerializeField] Animator animator;
@@ -19,6 +20,7 @@ public class Vacuum : Tool
     [SerializeField] float baseVacuumSpeed = 1;
     [SerializeField] int maxColliders = 50;
     [SerializeField] LayerMask vacuumLayerMask = 0;
+    [SerializeField] AudioSource sound;
     Collider[] overlapColliders;
 
     public Transform VacuumCenterPoint { get => vacuumCenterPoint; }
@@ -57,12 +59,13 @@ public class Vacuum : Tool
                 vacuumables.Add(vacuumable);
                 vacuumable.GetVacuumed(this, () =>
                 {
-                    diggerMachine.AddOre(vacuumable.Type, vacuumable.OreValue);
+                    onVacuumed.Raise();
+                    GameManager.Instance.PlayHaptic();
+                    diggerMachine.AddMine(vacuumable.Type, vacuumable.OreValue);
                     vacuumables.Remove(vacuumable);
                     rope.AddWave();
                 });
             }
-
         }
     }
 
@@ -78,6 +81,7 @@ public class Vacuum : Tool
         if (!working)
         {
             working = true;
+            sound.Play();
             vacuumEffect.gameObject.SetActive(true);
             animator.SetBool("work", true);
         }
@@ -88,6 +92,7 @@ public class Vacuum : Tool
         if (working)
         {
             working = false;
+            sound.Pause();
             vacuumEffect.gameObject.SetActive(false);
             animator.SetBool("work", false);
         }

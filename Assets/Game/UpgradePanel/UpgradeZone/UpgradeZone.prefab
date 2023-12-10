@@ -142,8 +142,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Upgrade
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2053490841dbd434997a8711a021b5b2, type: 2}
-  m_sharedMaterial: {fileID: -2791903691342613015, guid: 2053490841dbd434997a8711a021b5b2,
+  m_fontAsset: {fileID: 11400000, guid: 8af6efcafe4143c4db79b1512eae28c7, type: 2}
+  m_sharedMaterial: {fileID: -429024907807486032, guid: 8af6efcafe4143c4db79b1512eae28c7,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -171,7 +171,7 @@ MonoBehaviour:
   m_fontSize: 42.15
   m_fontSizeBase: 46
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 60
   m_fontStyle: 0

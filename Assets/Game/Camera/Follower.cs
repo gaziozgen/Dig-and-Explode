@@ -5,12 +5,26 @@ using FateGames.Core;
 public class Follower : FateMonoBehaviour
 {
     [SerializeField] Transform target;
+    [SerializeField] float speed;
     [SerializeField] Vector3 offset;
     [SerializeField] Vector3 threshold;
     [SerializeField] bool fixedUpdate;
     [SerializeField] bool freezeX;
     [SerializeField] bool freezeY;
     [SerializeField] bool freezeZ;
+
+    bool locked = false;
+    Transform mainTarget;
+
+    private void Awake()
+    {
+        mainTarget = target;
+    }
+
+    private void Start()
+    {
+        //transform.position = TargetPos();
+    }
 
     private void LateUpdate()
     {
@@ -23,7 +37,14 @@ public class Follower : FateMonoBehaviour
     }
     public void Follow()
     {
-        if (!target) return;
+        if (!target || locked) return;
+        Vector3 position = TargetPos();
+
+        transform.position = Vector3.MoveTowards(transform.position, position, speed * (fixedUpdate ? Time.fixedDeltaTime : Time.deltaTime));
+    }
+
+    Vector3 TargetPos()
+    {
         Vector3 position = target.position + offset;
         Vector3 difference = position - transform.position;
         // XXXXXXXXXXXXXXXXXXXXXXXXXXXX
@@ -48,6 +69,16 @@ public class Follower : FateMonoBehaviour
         else
             position.z += threshold.z;
 
-        transform.position = position;
+        return position;
+    }
+
+    public void SetTarget(Transform _target)
+    {
+        target = _target;
+    }
+
+    public void ResetTarget()
+    {
+        target = mainTarget;
     }
 }

@@ -29,11 +29,19 @@ public class ToolController : FateMonoBehaviour
     bool isWorking = false;
     Collider[] overlapColliders;
     int numOverlapColliders = 0;
+    float posX = 0;
+    float posY = 1;
 
     private void Awake()
     {
         overlapColliders = new Collider[maxCollider];
         rope.SetActive(true);
+    }
+
+    private void Start()
+    {
+        LoadPos();
+        InvokeRepeating(nameof(SavePos), 1, 1);
     }
 
     private void FixedUpdate()
@@ -67,4 +75,21 @@ public class ToolController : FateMonoBehaviour
     }
 
     public Rigidbody GetRigidbody() { return rb; }
+
+    private void LoadPos()
+    {
+        transform.localPosition = new Vector3(posX, posY, 0);
+        rope.transform.localPosition = new Vector3(posX, posY - 1, 0.5f);
+    }
+
+    public void SavePos()
+    {
+        posX = transform.localPosition.x;
+        posY = transform.localPosition.y;
+    }
+
+    private void OnDisable()
+    {
+        SavePos();
+    }
 }

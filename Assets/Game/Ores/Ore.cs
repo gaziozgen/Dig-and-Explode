@@ -5,7 +5,6 @@ using FateGames.Core;
 using System;
 using DG.Tweening;
 
-[RequireComponent(typeof(Rigidbody))]
 public class Ore : FateMonoBehaviour, IDiggable, IVacuumable
 {
     [SerializeField] int type = 0;
@@ -13,43 +12,69 @@ public class Ore : FateMonoBehaviour, IDiggable, IVacuumable
     [SerializeField] float power = 1f;
     [SerializeField] float vacuumDestroyDistance = 0.1f;
     [SerializeField] float vacuumAcceleration = 5;
-    [SerializeField] Material staticMeshMaterial, dynamicMeshMaterial;
+    [SerializeField] Material /*staticMeshMaterial, */dynamicMeshMaterial = null;
     [SerializeField] DugRuntimeSet dugRuntimeSet = null;
 
-    public int OreValue { get; private set; } = 1;
-
-    Rigidbody rb;
-    Collider staticCollider;
-    Collider dynamicCollider;
-    Collider trigger;
-    MeshRenderer meshRenderer;
-    bool isDug = false;
-
-    Action onVacuumEnd;
-    Action onGetDug = null;
-    float vacuumStartTime = -1;
-
-    private void Awake()
-    {
-        Collider[] colliders = GetComponents<Collider>();
-
-        trigger = colliders[0];
-        staticCollider = colliders[1];
-        dynamicCollider = colliders[2];
-
-        rb = GetComponent<Rigidbody>();
-        rb.isKinematic = true;
-
-        meshRenderer = GetComponentInChildren<MeshRenderer>();
-        meshRenderer.material = staticMeshMaterial;
-    }
-
-    /*private void Start()
-    {
-        DOVirtual.DelayedCall(-transform.position.y/10 - 4, GetDug);
-    }*/
+    [SerializeField] Rigidbody rb;
+    [SerializeField] MeshCollider trigger, staticCollider;
+    [SerializeField] BoxCollider dynamicCollider;
+    [SerializeField] MeshRenderer meshRenderer;
 
     public int Type => type;
+    public int OreValue { get; private set; } = 1;
+    public bool IsDestroyed => isDestroyed;
+    public Collider DynamicCollider => dynamicCollider;
+    public Rigidbody Rigidbody => rb;
+    public bool IsRigidbodyKinematic => rb.isKinematic;
+
+    bool isDug = false;
+    bool isDestroyed = false;
+    float vacuumStartTime = -1;
+    float posX = 0;
+    float posY = 0;
+    float angleZ = 0;
+    Action onVacuumEnd;
+    Action onGetDug = null;
+
+    private void OnValidate()
+    {
+        if (!Application.isPlaying && !rb)
+        {
+            gameObject.layer = 8;
+
+            rb = gameObject.AddComponent<Rigidbody>();
+            rb.isKinematic = true;
+            rb.angularDrag = 1;
+            rb.automaticInertiaTensor = false;
+            rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
+            rb.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
+
+            trigger = gameObject.AddComponent<MeshCollider>();
+            trigger.convex = true;
+            trigger.isTrigger = true;
+            trigger.cookingOptions = MeshColliderCookingOptions.None;
+
+            staticCollider = gameObject.AddComponent<MeshCollider>();
+            staticCollider.convex = true;
+            staticCollider.cookingOptions = MeshColliderCookingOptions.None;
+
+            dynamicCollider = gameObject.AddComponent<BoxCollider>();
+            dynamicCollider.enabled = false;
+            if (!gem) dynamicCollider.size = new Vector3(0.05f, 0.05f, 0.1f);
+
+            meshRenderer = GetComponentInChildren<MeshRenderer>();
+
+            Saveable saveable = GetComponent<Saveable>();
+            if (saveable != null) saveable.target = this;
+        }
+    }
+
+    private void Start()
+    {
+        LoadState();
+        CheckDugMember();
+        //DOVirtual.DelayedCall(-transform.position.y / 10 - 4, GetDug);
+    }
 
     public float Power() { return power; }
 
@@ -58,14 +83,14 @@ public class Ore : FateMonoBehaviour, IDiggable, IVacuumable
         return isDug;
     }
 
-    public void GetDug()
+    public void GetDug(bool checkDug = true)
     {
-        if (isDug) return;
+        if (checkDug && isDug) return;
         isDug = true;
 
         if (onGetDug != null) onGetDug();
         rb.isKinematic = false;
-        meshRenderer.material = dynamicMeshMaterial;
+        if (dynamicMeshMaterial != null)  meshRenderer.material = dynamicMeshMaterial;
         gameObject.layer = 9;
 
         trigger.enabled = false;
@@ -100,17 +125,14 @@ public class Ore : FateMonoBehaviour, IDiggable, IVacuumable
     public void FinishVacuum()
     {
         onVacuumEnd();
-        Destroy(gameObject);
+        isDestroyed = true;
+        gameObject.SetActive(false);
     }
 
     public void SetOnGetDug(Action onGetDug)
     {
         this.onGetDug = onGetDug;
     }
-
-    public Rigidbody GetRigidbody() { return rb; }
-
-    public bool IsRigidbodyKinematic => rb.isKinematic;
 
     public void SetRigidbodyKinematic(bool kinematic)
     {
@@ -123,22 +145,20 @@ public class Ore : FateMonoBehaviour, IDiggable, IVacuumable
         rb.AddForce(force, ForceMode.VelocityChange);
     }
 
-    public bool IsDestroyed { get; private set; } = false;
     public void DestroyOre(bool withAnimation = false)
     {
-        IsDestroyed = true;
+        isDestroyed = true;
         dynamicCollider.enabled = false;
         SetRigidbodyKinematic(true);
 
-        if (withAnimation) transform.DOScale(0, 0.5f).SetEase(Ease.InCirc).OnComplete(() => Destroy(gameObject));
-        else Destroy(gameObject);
+        if (withAnimation) transform.DOScale(0, 0.5f).SetEase(Ease.InCirc).OnComplete(() => gameObject.SetActive(false));
+        else gameObject.SetActive(false);
     }
 
     public void AddOreValue(int value)
     {
         OreValue += value;
     }
-    public Collider DynamicCollider => dynamicCollider;
 
 
     bool inRuntimeSet = false;
@@ -146,7 +166,7 @@ public class Ore : FateMonoBehaviour, IDiggable, IVacuumable
     {
         if (inRuntimeSet)
         {
-            if (IsDestroyed || rb.isKinematic || !gameObject.activeInHierarchy || vacuumStartTime != -1)
+            if (isDestroyed || rb.isKinematic || !gameObject.activeInHierarchy || vacuumStartTime != -1)
             {
                 dugRuntimeSet.Remove(this);
                 inRuntimeSet = false;
@@ -154,7 +174,7 @@ public class Ore : FateMonoBehaviour, IDiggable, IVacuumable
         }
         else
         {
-            if (!IsDestroyed && !rb.isKinematic && gameObject.activeInHierarchy && isDug && vacuumStartTime == -1)
+            if (!isDestroyed && !rb.isKinematic && gameObject.activeInHierarchy && isDug && vacuumStartTime == -1)
             {
                 dugRuntimeSet.Add(this);
                 inRuntimeSet = true;
@@ -173,5 +193,30 @@ public class Ore : FateMonoBehaviour, IDiggable, IVacuumable
     private void OnDisable()
     {
         CheckDugMember();
+        SavePos();
+    }
+
+    private void LoadState()
+    {
+        if (isDestroyed || vacuumStartTime != -1)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        else if (isDug)
+        {
+            transform.position = new Vector3(posX, posY, 0);
+            transform.eulerAngles = Vector3.forward * angleZ;
+            GetDug(false);
+        }
+    }
+
+    public void SavePos()
+    {
+        if (isDestroyed || vacuumStartTime != -1 || !isDug) return;
+
+        posX = transform.position.x;
+        posY = transform.position.y;
+        angleZ = transform.eulerAngles.z;
     }
 }

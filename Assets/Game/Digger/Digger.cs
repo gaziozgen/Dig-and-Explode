@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Digger : Tool
 {
@@ -10,13 +11,21 @@ public class Digger : Tool
     public EffectPool DigEffectPool;
     [SerializeField] EffectPool recoilEffectPool;
     [SerializeField] IntVariable level;
+    public SoundEntity DigSound;
+    public GameEvent onDigged;
+    //public SoundEntity DugSound;
     [SerializeField] float pushPowerMultiplier = 1;
     [SerializeField] float basePower = 1;
     [SerializeField] float powerIncreasePerLevel = 1;
-    [SerializeField] float slowdownDereasePerLevel = 0.1f;
+    [SerializeField] float slowdownDecreasePerLevel = 0.1f;
     [SerializeField] float rotationAccelerationDuration = 2;
     [SerializeField] float baseMaxRotationSpeed = 10;
     [SerializeField] float maxRotationSpeedIncreasePerLevel = 50;
+    [SerializeField] float giantDiggerDuration = 30;
+    [SerializeField] Transform rotateParent;
+    [SerializeField] Slider giantSlider;
+    [SerializeField] GameObject normalLevels;
+    [SerializeField] GameObject giantLevel;
     [SerializeField] ToolController ToolController;
 
     public bool Working { get; private set; }
@@ -32,9 +41,45 @@ public class Digger : Tool
         UpdateLevel();
     }
 
+    private void Update()
+    {
+        if (InGiantMode) UpdateGiantSlider();
+    }
+
+    #region Giant Digger
+
+    bool InGiantMode => remainingGiantTime > 0;
+    Action onGiantTimeUP = null;
+    float remainingGiantTime = 0;
+
+    public void SwichGiantDigger(Action callBack)
+    {
+        onGiantTimeUP = callBack;
+        remainingGiantTime = giantDiggerDuration;
+
+        giantSlider.gameObject.SetActive(true);
+        giantLevel.SetActive(true);
+        normalLevels.SetActive(false);
+    }
+
+    private void UpdateGiantSlider()
+    {
+        remainingGiantTime -= Time.deltaTime;
+
+        if (remainingGiantTime > 0) giantSlider.value = remainingGiantTime / giantDiggerDuration;
+        else
+        {
+            onGiantTimeUP.Invoke();
+            giantSlider.gameObject.SetActive(false);
+            giantLevel.SetActive(false);
+            normalLevels.SetActive(true);
+        }
+    }
+    #endregion
+
     public override float SlowdownMultiplier()
     {
-        return Mathf.Pow(1 - slowdownDereasePerLevel, level.Value);
+        return InGiantMode ? 0 : Mathf.Pow(1 - slowdownDecreasePerLevel, level.Value);
     }
 
     public float PushPower()
@@ -59,7 +104,7 @@ public class Digger : Tool
         ToolController.Recoil(direction);
     }
 
-    public float Power() { return basePower + level.Value * powerIncreasePerLevel; }
+    public float Power() { return InGiantMode ? 100 : (basePower + level.Value * powerIncreasePerLevel); }
 
     void AccelerateRotation()
     {
@@ -74,7 +119,7 @@ public class Digger : Tool
     void Rotate()
     {
         finalRotationVelocity = rotationVelocity * ToolController.SpeedMultiplier;
-        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + Time.deltaTime * finalRotationVelocity * Vector3.back);
+        rotateParent.rotation = Quaternion.Euler(rotateParent.rotation.eulerAngles + Time.deltaTime * finalRotationVelocity * Vector3.back);
     }
 
     public override void OnWork()

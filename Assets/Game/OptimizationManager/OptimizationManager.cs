@@ -64,7 +64,8 @@ public class OptimizationManager : MonoBehaviour
             for (int i = 0; i < controlCount; i++)
             {
                 Ore ore = items[(currentCheckIndex + i) % items.Count];
-                if (!IsInUnlockArea(ore) && NotInFocusedOres(ore) && ore.GetRigidbody().velocity.sqrMagnitude <= squaredFocusSpeed)
+                ore.SavePos();
+                if (!IsInUnlockArea(ore) && NotInFocusedOres(ore) && ore.Rigidbody.velocity.sqrMagnitude <= squaredFocusSpeed)
                     FocusOre(ore);
             }
             currentCheckIndex += controlCount;
@@ -106,7 +107,7 @@ public class OptimizationManager : MonoBehaviour
 
         for (int i = 0; i < oversupply; i++)
         {
-            DiggerMachine.Instance.AddOre(items[0].Type, items[0].OreValue);
+            DiggerMachine.Instance.AddMine(items[0].Type, items[0].OreValue);
             items[0].DestroyOre(true);
             /*bool transferred = false;
             for (int j = items.Count - 1; j >= 0; j--)

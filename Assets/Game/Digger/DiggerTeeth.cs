@@ -22,6 +22,9 @@ public class DiggerTeeth : FateMonoBehaviour
                 if (diggable.Power() <= digger.Power())
                 {
                     diggable.GetDug();
+                    digger.onDigged.Raise();
+                    GameManager.Instance.PlayHaptic();
+                    GameManager.Instance.PlaySoundOneShot(digger.DigSound);
                     digger.DigEffectPool.Get().transform.position = other.transform.position;
                 }
                 else

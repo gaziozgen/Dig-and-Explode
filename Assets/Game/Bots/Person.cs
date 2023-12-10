@@ -5,5 +5,6 @@ using UnityEngine;
 
 public class Person : FateMonoBehaviour
 {
-    [SerializeField] protected Agent agent;
+    public Agent Agent;
+    [HideInInspector] public Coroutine Coroutine;
 }

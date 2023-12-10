@@ -49,9 +49,21 @@ MonoBehaviour:
   diggerLevel: 0
   bombLevelVariable: {fileID: 11400000, guid: 45691e20c15da37449614d3bb11e3fd0, type: 2}
   bombLevel: 0
+  bombCapacityLevelVariable: {fileID: 11400000, guid: 732e69177d5a2f146b07d6b01d4cf313,
+    type: 2}
+  bombCapacityLevel: 0
   armSpeedLevelVariable: {fileID: 11400000, guid: 54c87f136bab45c4599a57a1179834a8,
     type: 2}
   armSpeedLevel: 0
   armCarryLevelVariable: {fileID: 11400000, guid: bbca1a62c9f4248449d3212b87b85c88,
     type: 2}
   armCarryLevel: 0
+  beltSpeedLevelVariable: {fileID: 11400000, guid: a49fb2d5b1411cd49acc7e707749abe0,
+    type: 2}
+  beltSpeedLevel: 0
+  belt1LevelVariable: {fileID: 11400000, guid: 9e982f2fb2b2585458dc90552e1a1a5f, type: 2}
+  belt1Level: 0
+  belt2LevelVariable: {fileID: 11400000, guid: 20f03bd8e61c7964baa87c5bec960c85, type: 2}
+  belt2Level: 0
+  belt3LevelVariable: {fileID: 11400000, guid: 20d14ce32d780174f8be1f47942e7358, type: 2}
+  belt3Level: 0
