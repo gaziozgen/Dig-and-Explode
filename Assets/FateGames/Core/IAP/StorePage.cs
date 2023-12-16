@@ -21,11 +21,13 @@ public class StorePage : Singleton<StorePage>
 
     public string[] GetProductIdentifiers()
     {
+        Debug.Log("############## GetProducts");
         string[] productIdentifiers = new string[purchaseSuccessfulEvents.Count];
         for (int i = 0; i < purchaseSuccessfulEvents.Count; i++)
         {
             productIdentifiers[i] = purchaseSuccessfulEvents[i].id;
         }
+        Debug.Log("############## productIdentifiers " + productIdentifiers.Length);
         return productIdentifiers;
     }
 

@@ -868,19 +868,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 950498435464782024}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6468301484126213510}
-        m_TargetAssemblyTypeName: NoAds, Assembly-CSharp
-        m_MethodName: OnPurchaseClicked
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &3937453134296816846
 MonoBehaviour:
   m_ObjectHideFlags: 0

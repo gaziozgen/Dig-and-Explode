@@ -20,6 +20,7 @@ public class RevenueCatManager : Purchases.UpdatedCustomerInfoListener
 
     public void Initialize()
     {
+        Debug.Log("####################### Initialize");
         Configure();
         CollectData();
         GetProducts();
@@ -68,11 +69,14 @@ public class RevenueCatManager : Purchases.UpdatedCustomerInfoListener
 
     public void GetProducts()
     {
+        Debug.Log("############## GetProducts");
         purchases.GetProducts(storePage.GetProductIdentifiers(), (products, error) =>
         {
+            Debug.Log("############## purchases.GetProducts");
             if (error != null) Debug.LogError(error.Message);
             else
             {
+                Debug.Log("############## no error");
                 for (int i = 0; i < products.Count; i++)
                 {
                     StoreProduct storeProduct = products[i];

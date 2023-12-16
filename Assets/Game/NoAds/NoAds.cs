@@ -16,9 +16,17 @@ public class NoAds : MonoBehaviour
 
     private void Initialize()
     {
+        Debug.Log("##################### Initialize NoAds");
         Purchases.StoreProduct product = StorePage.Instance.GetProduct(storePageProduct.id);
+        Debug.Log("##################### " + (product == null).ToString());
         if (product == null) return;
-        storePageProduct.button.onClick.AddListener(() => StorePage.Instance.HandlePurchase(storePageProduct.id));
+        Debug.Log("##################### " + (product == null).ToString());
+        storePageProduct.button.onClick.AddListener(() =>
+        {
+            Debug.Log("no ads clicked");
+            Debug.Log(StorePage.Instance);
+            StorePage.Instance.HandlePurchase(storePageProduct.id);
+        });
         storePageProduct.priceText.text = $"{product.CurrencyCode} {product.Price}";
 
     }

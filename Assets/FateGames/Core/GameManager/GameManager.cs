@@ -38,6 +38,8 @@ namespace FateGames.Core
         [SerializeField] private FirebaseManager firebaseManager;
         [SerializeField] private RemoteConfigManager remoteConfigManager;
         private PushNotificationManager pushNotificationManager = new();
+        [Header("Revenuecat")]
+        [SerializeField] private RevenueCatManager revenueCatManager;
         [Header("Applovin")]
         [SerializeField] private ApplovinManager applovinManager;
         [Header("Adjust")]
@@ -110,6 +112,7 @@ namespace FateGames.Core
             }
             if (adjustManager)
                 yield return adjustManager.Initialize();
+            if (revenueCatManager) revenueCatManager.Initialize();
             GameAnalytics.Initialize();
             if (loadingScreen) loadingScreen.SetPercent(85);
             yield return facebookManager.Initialize();
