@@ -52,6 +52,9 @@ MonoBehaviour:
   bombCapacityLevelVariable: {fileID: 11400000, guid: 732e69177d5a2f146b07d6b01d4cf313,
     type: 2}
   bombCapacityLevel: 0
+  ropeLengthLevelVariable: {fileID: 11400000, guid: 5429d0ee9b944fa42a8ef03b28f8f4cf,
+    type: 2}
+  ropeLengthLevel: 0
   armSpeedLevelVariable: {fileID: 11400000, guid: 54c87f136bab45c4599a57a1179834a8,
     type: 2}
   armSpeedLevel: 0

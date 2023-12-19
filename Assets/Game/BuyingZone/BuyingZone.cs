@@ -119,7 +119,7 @@ public class BuyingZone : FateMonoBehaviour
     {
         if (priceText)
         {
-            priceText.text = price == 0 ? "Free" : (price.ToString());
+            priceText.text = price == 0 ? "Free" : ("$" + price.ToString());
         }
     }
     public void UpdateNameText()

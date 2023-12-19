@@ -28,7 +28,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 33363637d8bd3374f93a3f4240eadeee,
+      objectReference: {fileID: 21300000, guid: 7094251e47847034cbebb034e35bac5a,
         type: 3}
     - target: {fileID: 856638946183989185, guid: 93b6e933290ee094aa9156ddfa5029c5,
         type: 3}
@@ -59,23 +59,23 @@ PrefabInstance:
         type: 3}
       propertyPath: icon
       value: 
-      objectReference: {fileID: 21300000, guid: 33363637d8bd3374f93a3f4240eadeee,
+      objectReference: {fileID: 21300000, guid: 7094251e47847034cbebb034e35bac5a,
         type: 3}
     - target: {fileID: 2279819101963652092, guid: 93b6e933290ee094aa9156ddfa5029c5,
         type: 3}
       propertyPath: name
-      value: Bomb Capacity
+      value: Rope Length
       objectReference: {fileID: 0}
     - target: {fileID: 2279819101963652092, guid: 93b6e933290ee094aa9156ddfa5029c5,
         type: 3}
       propertyPath: maxLevel
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2279819101963652092, guid: 93b6e933290ee094aa9156ddfa5029c5,
         type: 3}
       propertyPath: level.Variable
       value: 
-      objectReference: {fileID: 11400000, guid: 732e69177d5a2f146b07d6b01d4cf313,
+      objectReference: {fileID: 11400000, guid: 5429d0ee9b944fa42a8ef03b28f8f4cf,
         type: 2}
     - target: {fileID: 2279819101963652092, guid: 93b6e933290ee094aa9156ddfa5029c5,
         type: 3}
@@ -85,7 +85,7 @@ PrefabInstance:
     - target: {fileID: 2279819101963652092, guid: 93b6e933290ee094aa9156ddfa5029c5,
         type: 3}
       propertyPath: prices.Array.size
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2279819101963652092, guid: 93b6e933290ee094aa9156ddfa5029c5,
         type: 3}
@@ -95,22 +95,47 @@ PrefabInstance:
     - target: {fileID: 2279819101963652092, guid: 93b6e933290ee094aa9156ddfa5029c5,
         type: 3}
       propertyPath: prices.Array.data[1]
-      value: 100
+      value: 160
       objectReference: {fileID: 0}
     - target: {fileID: 2279819101963652092, guid: 93b6e933290ee094aa9156ddfa5029c5,
         type: 3}
       propertyPath: prices.Array.data[2]
-      value: 150
+      value: 410
       objectReference: {fileID: 0}
     - target: {fileID: 2279819101963652092, guid: 93b6e933290ee094aa9156ddfa5029c5,
         type: 3}
       propertyPath: prices.Array.data[3]
-      value: 200
+      value: 735
       objectReference: {fileID: 0}
     - target: {fileID: 2279819101963652092, guid: 93b6e933290ee094aa9156ddfa5029c5,
         type: 3}
       propertyPath: prices.Array.data[4]
-      value: 250
+      value: 1105
+      objectReference: {fileID: 0}
+    - target: {fileID: 2279819101963652092, guid: 93b6e933290ee094aa9156ddfa5029c5,
+        type: 3}
+      propertyPath: prices.Array.data[5]
+      value: 1660
+      objectReference: {fileID: 0}
+    - target: {fileID: 2279819101963652092, guid: 93b6e933290ee094aa9156ddfa5029c5,
+        type: 3}
+      propertyPath: prices.Array.data[6]
+      value: 2485
+      objectReference: {fileID: 0}
+    - target: {fileID: 2279819101963652092, guid: 93b6e933290ee094aa9156ddfa5029c5,
+        type: 3}
+      propertyPath: prices.Array.data[7]
+      value: 3730
+      objectReference: {fileID: 0}
+    - target: {fileID: 2279819101963652092, guid: 93b6e933290ee094aa9156ddfa5029c5,
+        type: 3}
+      propertyPath: prices.Array.data[8]
+      value: 5595
+      objectReference: {fileID: 0}
+    - target: {fileID: 2279819101963652092, guid: 93b6e933290ee094aa9156ddfa5029c5,
+        type: 3}
+      propertyPath: prices.Array.data[9]
+      value: 8390
       objectReference: {fileID: 0}
     - target: {fileID: 2420902472167480203, guid: 93b6e933290ee094aa9156ddfa5029c5,
         type: 3}
@@ -177,52 +202,52 @@ PrefabInstance:
     - target: {fileID: 4678103024798869528, guid: 93b6e933290ee094aa9156ddfa5029c5,
         type: 3}
       propertyPath: prices.Array.data[0]
-      value: 10
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 4678103024798869528, guid: 93b6e933290ee094aa9156ddfa5029c5,
         type: 3}
       propertyPath: prices.Array.data[1]
-      value: 15
+      value: 160
       objectReference: {fileID: 0}
     - target: {fileID: 4678103024798869528, guid: 93b6e933290ee094aa9156ddfa5029c5,
         type: 3}
       propertyPath: prices.Array.data[2]
-      value: 23
+      value: 410
       objectReference: {fileID: 0}
     - target: {fileID: 4678103024798869528, guid: 93b6e933290ee094aa9156ddfa5029c5,
         type: 3}
       propertyPath: prices.Array.data[3]
-      value: 34
+      value: 735
       objectReference: {fileID: 0}
     - target: {fileID: 4678103024798869528, guid: 93b6e933290ee094aa9156ddfa5029c5,
         type: 3}
       propertyPath: prices.Array.data[4]
-      value: 51
+      value: 1105
       objectReference: {fileID: 0}
     - target: {fileID: 4678103024798869528, guid: 93b6e933290ee094aa9156ddfa5029c5,
         type: 3}
       propertyPath: prices.Array.data[5]
-      value: 76
+      value: 1660
       objectReference: {fileID: 0}
     - target: {fileID: 4678103024798869528, guid: 93b6e933290ee094aa9156ddfa5029c5,
         type: 3}
       propertyPath: prices.Array.data[6]
-      value: 114
+      value: 2485
       objectReference: {fileID: 0}
     - target: {fileID: 4678103024798869528, guid: 93b6e933290ee094aa9156ddfa5029c5,
         type: 3}
       propertyPath: prices.Array.data[7]
-      value: 171
+      value: 3730
       objectReference: {fileID: 0}
     - target: {fileID: 4678103024798869528, guid: 93b6e933290ee094aa9156ddfa5029c5,
         type: 3}
       propertyPath: prices.Array.data[8]
-      value: 256
+      value: 5595
       objectReference: {fileID: 0}
     - target: {fileID: 4678103024798869528, guid: 93b6e933290ee094aa9156ddfa5029c5,
         type: 3}
       propertyPath: prices.Array.data[9]
-      value: 385
+      value: 8390
       objectReference: {fileID: 0}
     - target: {fileID: 4678103024798869528, guid: 93b6e933290ee094aa9156ddfa5029c5,
         type: 3}
@@ -333,47 +358,47 @@ PrefabInstance:
     - target: {fileID: 7821533749864317041, guid: 93b6e933290ee094aa9156ddfa5029c5,
         type: 3}
       propertyPath: prices.Array.data[1]
-      value: 38
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 7821533749864317041, guid: 93b6e933290ee094aa9156ddfa5029c5,
         type: 3}
       propertyPath: prices.Array.data[2]
-      value: 56
+      value: 330
       objectReference: {fileID: 0}
     - target: {fileID: 7821533749864317041, guid: 93b6e933290ee094aa9156ddfa5029c5,
         type: 3}
       propertyPath: prices.Array.data[3]
-      value: 84
+      value: 650
       objectReference: {fileID: 0}
     - target: {fileID: 7821533749864317041, guid: 93b6e933290ee094aa9156ddfa5029c5,
         type: 3}
       propertyPath: prices.Array.data[4]
-      value: 127
+      value: 975
       objectReference: {fileID: 0}
     - target: {fileID: 7821533749864317041, guid: 93b6e933290ee094aa9156ddfa5029c5,
         type: 3}
       propertyPath: prices.Array.data[5]
-      value: 190
+      value: 1460
       objectReference: {fileID: 0}
     - target: {fileID: 7821533749864317041, guid: 93b6e933290ee094aa9156ddfa5029c5,
         type: 3}
       propertyPath: prices.Array.data[6]
-      value: 185
+      value: 2195
       objectReference: {fileID: 0}
     - target: {fileID: 7821533749864317041, guid: 93b6e933290ee094aa9156ddfa5029c5,
         type: 3}
       propertyPath: prices.Array.data[7]
-      value: 400
+      value: 3730
       objectReference: {fileID: 0}
     - target: {fileID: 7821533749864317041, guid: 93b6e933290ee094aa9156ddfa5029c5,
         type: 3}
       propertyPath: prices.Array.data[8]
-      value: 700
+      value: 5595
       objectReference: {fileID: 0}
     - target: {fileID: 7821533749864317041, guid: 93b6e933290ee094aa9156ddfa5029c5,
         type: 3}
       propertyPath: prices.Array.data[9]
-      value: 1000
+      value: 8390
       objectReference: {fileID: 0}
     - target: {fileID: 7821533749864317041, guid: 93b6e933290ee094aa9156ddfa5029c5,
         type: 3}
@@ -399,12 +424,7 @@ PrefabInstance:
     - target: {fileID: 8704125954862746700, guid: 93b6e933290ee094aa9156ddfa5029c5,
         type: 3}
       propertyPath: m_text
-      value: Bomb Capacity
-      objectReference: {fileID: 0}
-    - target: {fileID: 8704125954862746700, guid: 93b6e933290ee094aa9156ddfa5029c5,
-        type: 3}
-      propertyPath: m_fontSize
-      value: 42
+      value: Rope Length
       objectReference: {fileID: 0}
     - target: {fileID: 8704125954862746700, guid: 93b6e933290ee094aa9156ddfa5029c5,
         type: 3}
@@ -471,6 +491,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_text
       value: Tool Upgrades
+      objectReference: {fileID: 0}
+    - target: {fileID: 8999959736524979551, guid: 93b6e933290ee094aa9156ddfa5029c5,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 75
       objectReference: {fileID: 0}
     - target: {fileID: 9138009761194244207, guid: 93b6e933290ee094aa9156ddfa5029c5,
         type: 3}

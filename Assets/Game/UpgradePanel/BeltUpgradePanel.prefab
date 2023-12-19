@@ -70,17 +70,17 @@ PrefabInstance:
     - target: {fileID: 2279819101963652092, guid: 93b6e933290ee094aa9156ddfa5029c5,
         type: 3}
       propertyPath: prices.Array.data[0]
-      value: 60
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 2279819101963652092, guid: 93b6e933290ee094aa9156ddfa5029c5,
         type: 3}
       propertyPath: prices.Array.data[1]
-      value: 130
+      value: 990
       objectReference: {fileID: 0}
     - target: {fileID: 2279819101963652092, guid: 93b6e933290ee094aa9156ddfa5029c5,
         type: 3}
       propertyPath: prices.Array.data[2]
-      value: 220
+      value: 2250
       objectReference: {fileID: 0}
     - target: {fileID: 2847184252976148392, guid: 93b6e933290ee094aa9156ddfa5029c5,
         type: 3}
@@ -122,17 +122,17 @@ PrefabInstance:
     - target: {fileID: 4678103024798869528, guid: 93b6e933290ee094aa9156ddfa5029c5,
         type: 3}
       propertyPath: prices.Array.data[0]
-      value: 20
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 4678103024798869528, guid: 93b6e933290ee094aa9156ddfa5029c5,
         type: 3}
       propertyPath: prices.Array.data[1]
-      value: 50
+      value: 330
       objectReference: {fileID: 0}
     - target: {fileID: 4678103024798869528, guid: 93b6e933290ee094aa9156ddfa5029c5,
         type: 3}
       propertyPath: prices.Array.data[2]
-      value: 100
+      value: 750
       objectReference: {fileID: 0}
     - target: {fileID: 6140208541775694072, guid: 93b6e933290ee094aa9156ddfa5029c5,
         type: 3}
@@ -175,17 +175,17 @@ PrefabInstance:
     - target: {fileID: 7821533749864317041, guid: 93b6e933290ee094aa9156ddfa5029c5,
         type: 3}
       propertyPath: prices.Array.data[0]
-      value: 40
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 7821533749864317041, guid: 93b6e933290ee094aa9156ddfa5029c5,
         type: 3}
       propertyPath: prices.Array.data[1]
-      value: 100
+      value: 660
       objectReference: {fileID: 0}
     - target: {fileID: 7821533749864317041, guid: 93b6e933290ee094aa9156ddfa5029c5,
         type: 3}
       propertyPath: prices.Array.data[2]
-      value: 180
+      value: 1500
       objectReference: {fileID: 0}
     - target: {fileID: 8704125954862746700, guid: 93b6e933290ee094aa9156ddfa5029c5,
         type: 3}

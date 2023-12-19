@@ -11,6 +11,8 @@ public class UpgradeManager : MonoBehaviour
     [SerializeField] int bombLevel = 0;
     [SerializeField] IntVariable bombCapacityLevelVariable;
     [SerializeField] int bombCapacityLevel = 0;
+    [SerializeField] IntVariable ropeLengthLevelVariable;
+    [SerializeField] int ropeLengthLevel = 0;
     [SerializeField] IntVariable armSpeedLevelVariable;
     [SerializeField] int armSpeedLevel = 0;
     [SerializeField] IntVariable armCarryLevelVariable;
@@ -29,6 +31,7 @@ public class UpgradeManager : MonoBehaviour
         diggerLevelVariable.Value = diggerLevel;
         bombLevelVariable.Value = bombLevel;
         bombCapacityLevelVariable.Value = bombCapacityLevel;
+        ropeLengthLevelVariable.Value = ropeLengthLevel;
         armSpeedLevelVariable.Value = armSpeedLevel;
         armCarryLevelVariable.Value = armCarryLevel;
         beltSpeedLevelVariable.Value = beltSpeedLevel;
@@ -49,10 +52,16 @@ public class UpgradeManager : MonoBehaviour
         bombLevelVariable.Value = bombLevel;
     }
 
-    public void UpgradeBombCapacityLevel()
+    /*public void UpgradeBombCapacityLevel()
     {
         bombCapacityLevel++;
         bombCapacityLevelVariable.Value = bombCapacityLevel;
+    }*/
+    
+    public void UpgradeRopeLengthLevel()
+    {
+        ropeLengthLevel++;
+        ropeLengthLevelVariable.Value = ropeLengthLevel;
     }
 
     public void UpgradeArmSpeedLevel()

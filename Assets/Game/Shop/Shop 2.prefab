@@ -3653,6 +3653,12 @@ PrefabInstance:
       propertyPath: itemsToAnimate.Array.data[4]
       value: 
       objectReference: {fileID: 1575117318199849681}
+    - target: {fileID: 1273851628180203749, guid: 9d9ee4295298e2749bec3ba4dd37b10f,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6e932541229eaa943855f2cbb35d8c68,
+        type: 3}
     - target: {fileID: 2369697227118391224, guid: 9d9ee4295298e2749bec3ba4dd37b10f,
         type: 3}
       propertyPath: m_IsActive
@@ -3673,6 +3679,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shop 2
       objectReference: {fileID: 0}
+    - target: {fileID: 4265771108323340676, guid: 9d9ee4295298e2749bec3ba4dd37b10f,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6e932541229eaa943855f2cbb35d8c68,
+        type: 3}
     - target: {fileID: 5331606601895952859, guid: 9d9ee4295298e2749bec3ba4dd37b10f,
         type: 3}
       propertyPath: m_IsActive
@@ -3791,6 +3803,12 @@ PrefabInstance:
       propertyPath: itemsToAnimate.Array.data[4]
       value: 
       objectReference: {fileID: 8665085425115654667}
+    - target: {fileID: 8089262742940078643, guid: 9d9ee4295298e2749bec3ba4dd37b10f,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6e932541229eaa943855f2cbb35d8c68,
+        type: 3}
     - target: {fileID: 8255464669554220233, guid: 9d9ee4295298e2749bec3ba4dd37b10f,
         type: 3}
       propertyPath: m_IsActive

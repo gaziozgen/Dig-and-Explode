@@ -1054,8 +1054,8 @@ MonoBehaviour:
   powerIncreasePerLevel: 1
   slowdownDecreasePerLevel: 0.05
   rotationAccelerationDuration: 1
-  baseMaxRotationSpeed: 400
-  maxRotationSpeedIncreasePerLevel: 30
+  baseMaxRotationSpeed: 250
+  maxRotationSpeedIncreasePerLevel: 40
   giantDiggerDuration: 20
   rotateParent: {fileID: 4753752906316933102}
   giantSlider: {fileID: 4146532292353933615}

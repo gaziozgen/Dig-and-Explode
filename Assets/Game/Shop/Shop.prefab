@@ -989,7 +989,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6819847701635285696
 Transform:
   m_ObjectHideFlags: 0
@@ -2013,11 +2013,6 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1768498603705662152, guid: 3d73cdf23dfc672468c761dcbc701164,
         type: 3}
-      propertyPath: price
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 1768498603705662152, guid: 3d73cdf23dfc672468c761dcbc701164,
-        type: 3}
       propertyPath: faceDown
       value: 1
       objectReference: {fileID: 0}
@@ -2025,11 +2020,6 @@ PrefabInstance:
         type: 3}
       propertyPath: zoneName
       value: LEVEL 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1768498603705662152, guid: 3d73cdf23dfc672468c761dcbc701164,
-        type: 3}
-      propertyPath: originalPrice
-      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 1768498603705662152, guid: 3d73cdf23dfc672468c761dcbc701164,
         type: 3}
@@ -2222,25 +2212,10 @@ PrefabInstance:
       propertyPath: onBoughtFirstTime.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
-    - target: {fileID: 2438673302904386762, guid: 3d73cdf23dfc672468c761dcbc701164,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 80.18
-      objectReference: {fileID: 0}
-    - target: {fileID: 2438673302904386762, guid: 3d73cdf23dfc672468c761dcbc701164,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 73.64
-      objectReference: {fileID: 0}
-    - target: {fileID: 2438673302904386762, guid: 3d73cdf23dfc672468c761dcbc701164,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 39.6
-      objectReference: {fileID: 0}
     - target: {fileID: 2953010757691040852, guid: 3d73cdf23dfc672468c761dcbc701164,
         type: 3}
       propertyPath: m_text
-      value: 200
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2953010757691040852, guid: 3d73cdf23dfc672468c761dcbc701164,
         type: 3}
@@ -2327,12 +2302,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6635799017306327328, guid: 3d73cdf23dfc672468c761dcbc701164,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 6e2be9555fc14984fa9ef8f17d2f1e31,
-        type: 3}
     - target: {fileID: 8133228719703871468, guid: 3d73cdf23dfc672468c761dcbc701164,
         type: 3}
       propertyPath: m_Name
@@ -2899,11 +2868,6 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1768498603705662152, guid: 3d73cdf23dfc672468c761dcbc701164,
         type: 3}
-      propertyPath: price
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 1768498603705662152, guid: 3d73cdf23dfc672468c761dcbc701164,
-        type: 3}
       propertyPath: faceDown
       value: 1
       objectReference: {fileID: 0}
@@ -2911,11 +2875,6 @@ PrefabInstance:
         type: 3}
       propertyPath: gameEvent
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1768498603705662152, guid: 3d73cdf23dfc672468c761dcbc701164,
-        type: 3}
-      propertyPath: originalPrice
-      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 1768498603705662152, guid: 3d73cdf23dfc672468c761dcbc701164,
         type: 3}
@@ -3099,25 +3058,10 @@ PrefabInstance:
       propertyPath: onBoughtFirstTime.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
-    - target: {fileID: 2438673302904386762, guid: 3d73cdf23dfc672468c761dcbc701164,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 102.76
-      objectReference: {fileID: 0}
-    - target: {fileID: 2438673302904386762, guid: 3d73cdf23dfc672468c761dcbc701164,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 102.76
-      objectReference: {fileID: 0}
-    - target: {fileID: 2438673302904386762, guid: 3d73cdf23dfc672468c761dcbc701164,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.0000014901
-      objectReference: {fileID: 0}
     - target: {fileID: 2953010757691040852, guid: 3d73cdf23dfc672468c761dcbc701164,
         type: 3}
       propertyPath: m_text
-      value: 100
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2953010757691040852, guid: 3d73cdf23dfc672468c761dcbc701164,
         type: 3}
@@ -3179,12 +3123,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6635799017306327328, guid: 3d73cdf23dfc672468c761dcbc701164,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 6e2be9555fc14984fa9ef8f17d2f1e31,
-        type: 3}
     - target: {fileID: 8133228719703871468, guid: 3d73cdf23dfc672468c761dcbc701164,
         type: 3}
       propertyPath: m_Name
@@ -3405,11 +3343,6 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1768498603705662152, guid: 3d73cdf23dfc672468c761dcbc701164,
         type: 3}
-      propertyPath: price
-      value: 400
-      objectReference: {fileID: 0}
-    - target: {fileID: 1768498603705662152, guid: 3d73cdf23dfc672468c761dcbc701164,
-        type: 3}
       propertyPath: faceDown
       value: 1
       objectReference: {fileID: 0}
@@ -3417,11 +3350,6 @@ PrefabInstance:
         type: 3}
       propertyPath: zoneName
       value: LEVEL 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1768498603705662152, guid: 3d73cdf23dfc672468c761dcbc701164,
-        type: 3}
-      propertyPath: originalPrice
-      value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 1768498603705662152, guid: 3d73cdf23dfc672468c761dcbc701164,
         type: 3}
@@ -3614,25 +3542,10 @@ PrefabInstance:
       propertyPath: onBoughtFirstTime.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
-    - target: {fileID: 2438673302904386762, guid: 3d73cdf23dfc672468c761dcbc701164,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 80.18
-      objectReference: {fileID: 0}
-    - target: {fileID: 2438673302904386762, guid: 3d73cdf23dfc672468c761dcbc701164,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 73.64
-      objectReference: {fileID: 0}
-    - target: {fileID: 2438673302904386762, guid: 3d73cdf23dfc672468c761dcbc701164,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 39.6
-      objectReference: {fileID: 0}
     - target: {fileID: 2953010757691040852, guid: 3d73cdf23dfc672468c761dcbc701164,
         type: 3}
       propertyPath: m_text
-      value: 400
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2953010757691040852, guid: 3d73cdf23dfc672468c761dcbc701164,
         type: 3}
@@ -3643,11 +3556,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_text
       value: LEVEL 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4487165468297647455, guid: 3d73cdf23dfc672468c761dcbc701164,
-        type: 3}
-      propertyPath: m_fontSize
-      value: 42.6
       objectReference: {fileID: 0}
     - target: {fileID: 4487165468297647455, guid: 3d73cdf23dfc672468c761dcbc701164,
         type: 3}
@@ -3719,12 +3627,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6635799017306327328, guid: 3d73cdf23dfc672468c761dcbc701164,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 6e2be9555fc14984fa9ef8f17d2f1e31,
-        type: 3}
     - target: {fileID: 8133228719703871468, guid: 3d73cdf23dfc672468c761dcbc701164,
         type: 3}
       propertyPath: m_Name

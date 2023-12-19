@@ -49,7 +49,7 @@ MonoBehaviour:
   toolTransform: {fileID: 0}
   dynamitePrefab: {fileID: 8862411416773740877, guid: d1b4f4d5810ff63479a94de8f1d073ca,
     type: 3}
-  bombCount: 3
+  bombCount: 4
   maxBombCountLevel: {fileID: 11400000, guid: 732e69177d5a2f146b07d6b01d4cf313, type: 2}
   reloadTime: 10
   baseRange: 1.4
